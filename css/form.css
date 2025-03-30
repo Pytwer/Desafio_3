@@ -376,7 +376,7 @@ input[type="file"] {
 @media (max-width: 767px) {
     /* Reset de estilos para mobile */
     body {
-        overflow-x: hidden;
+        overflow-x: scroll;
         height: auto;
     }
 
