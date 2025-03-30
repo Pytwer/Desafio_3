@@ -110,10 +110,7 @@ nav a:hover::after {
     z-index: -1;
 }
 
-/* Vídeo mobile (inicialmente oculto) */
-.mobile-video {
-    display: none;
-}
+
 
 .hero-content {
     width: 100%;
