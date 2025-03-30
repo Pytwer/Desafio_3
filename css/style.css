@@ -1,6 +1,5 @@
 /* Estilos Gerais */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
 :root {
     --primary-color: #1abc9c;
     --secondary-color: #2135a6;
@@ -32,9 +31,7 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    background-color: transparent !important; /* Garante que não terá cor de fundo */
-    backdrop-filter: none !important; /* Remove qualquer efeito de blur */
-    border: none !important; /* Remove bordas */
+    background-color: transparent;
 }
 
 .logo img {
@@ -91,10 +88,6 @@ nav a:hover::after {
     color: var(--text-color);
 }
 
-.menu-toggle.active {
-    transform: rotate(90deg);
-}
-
 /* Hero Section */
 .hero {
     position: relative;
@@ -102,8 +95,9 @@ nav a:hover::after {
     min-height: 600px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     overflow: hidden;
+    padding-bottom: 15vh;
 }
 
 .hero-video {
@@ -116,9 +110,14 @@ nav a:hover::after {
     z-index: -1;
 }
 
+/* Vídeo mobile (inicialmente oculto) */
+.mobile-video {
+    display: none;
+}
+
 .hero-content {
     width: 100%;
-    max-width: 1200px;
+    max-width: 600px;
     padding: 2rem;
     text-align: center;
     z-index: 2;
@@ -126,10 +125,10 @@ nav a:hover::after {
 
 .hero-buttons {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     justify-content: center;
     gap: 1.5rem;
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 
 /* Botões */
@@ -148,7 +147,6 @@ nav a:hover::after {
     transition: all var(--transition-speed);
     min-width: 220px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    z-index: 1;
 }
 
 .btn:hover {
@@ -157,12 +155,16 @@ nav a:hover::after {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
-.btn:active {
-    transform: translateY(-2px);
-}
-
 /* Media Queries */
 @media (max-width: 768px) {
+    /* Mostra vídeo mobile e esconde o desktop */
+    .desktop-video {
+        display: none;
+    }
+    .mobile-video {
+        display: block;
+    }
+    
     header {
         padding: 1rem;
     }
@@ -190,8 +192,9 @@ nav a:hover::after {
         left: 0;
     }
     
-    .hero-content {
-        padding: 1.5rem;
+    .hero {
+        min-height: 100vh;
+        padding-bottom: 10vh;
     }
     
     .hero-buttons {
@@ -214,9 +217,5 @@ nav a:hover::after {
         padding: 0.8rem 1.5rem;
         min-width: 180px;
         font-size: 0.95rem;
-    }
-    
-    nav ul {
-        width: 100%;
     }
 }
