@@ -434,19 +434,23 @@ input[type="file"] {
     }
 
     .custom-checkbox {
-        width: 100%;
-        height: 140px;
+        width: 100%; /* Ocupa 100% mas com margens */
+        max-width: 280px; /* Largura máxima reduzida */
+        margin-left: auto;
+        margin-right: auto;
+        height: 130px; /* Altura um pouco menor */
         padding: 15px;
     }
 
     .custom-checkbox img {
-        max-width: 40px;
+        max-width: 35px; /* Ícone um pouco menor */
     }
 
     .custom-checkbox .texto {
         font-size: 14px;
+        white-space: normal; /* Permite quebra de linha */
     }
-
+}
     /* UPLOAD FILES */
     .file-upload {
         width: 100%;
