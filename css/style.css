@@ -110,7 +110,10 @@ nav a:hover::after {
     z-index: -1;
 }
 
-
+/* Vídeo mobile (inicialmente oculto) */
+.mobile-video {
+    display: none;
+}
 
 .hero-content {
     width: 100%;
@@ -172,9 +175,9 @@ nav a:hover::after {
     
     nav ul {
         position: fixed;
-        top: 3rem;
-        left: -90%;
-        width: 90%;
+        top: 5rem;
+        left: -100%;
+        width: 80%;
         height: calc(100vh - 5rem);
         background-color: rgba(33, 53, 166, 0.95);
         flex-direction: column;
