@@ -369,3 +369,78 @@ input[type="file"] {
     color: #333;
     margin-top: 15px;
 }
+/* Adicione estas regras no final do seu arquivo CSS */
+
+/* Estilos para tablets (768px a 1024px) */
+@media (max-width: 1024px) {
+    .image-column {
+        width: 30%; /* Reduz a largura da coluna da imagem */
+    }
+    
+    .form-column {
+        padding: 20px; /* Reduz o padding */
+    }
+    
+    .file-upload {
+        width: 100%; /* Ajusta a largura do upload */
+    }
+}
+
+/* Estilos para mobile (até 767px) */
+@media (max-width: 767px) {
+    .container {
+        flex-direction: column; /* Coloca as colunas em vertical */
+        height: auto; /* Altura automática */
+    }
+    
+    .image-column {
+        display: none; /* Esconde a coluna da imagem */
+    }
+    
+    .form-column {
+        width: 100%; /* Ocupa toda a largura */
+        padding: 15px; /* Padding menor */
+    }
+    
+    .row {
+        flex-direction: column; /* Coloca os campos em vertical */
+        gap: 10px; /* Espaçamento menor */
+    }
+    
+    .trilhas {
+        grid-template-columns: 1fr; /* Uma coluna para as trilhas */
+    }
+    
+    .custom-checkbox {
+        width: 100%; /* Ocupa toda a largura */
+    }
+    
+    .file-upload {
+        width: 100%; /* Ocupa toda a largura */
+        padding: 15px; /* Padding menor */
+    }
+    
+    .botao-container {
+        justify-content: center; /* Centraliza o botão */
+        gap: 15px; /* Espaçamento menor */
+    }
+    
+    .inscricao {
+        width: 100%; /* Botão ocupa toda a largura */
+    }
+}
+
+/* Estilos para mobile pequeno (até 480px) */
+@media (max-width: 480px) {
+    .form h1 {
+        font-size: 24px; /* Título menor */
+    }
+    
+    .form h2 {
+        font-size: 18px; /* Subtítulo menor */
+    }
+    
+    input, select, button {
+        font-size: 14px; /* Fonte menor para inputs */
+    }
+}
