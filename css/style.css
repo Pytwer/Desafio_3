@@ -1,11 +1,10 @@
-/* Estilos Gerais - Otimizados */
+/* Estilos Gerais */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
     --primary-color: #1abc9c;
     --secondary-color: #2135a6;
     --text-color: #ffffff;
-    --header-bg: rgba(33, 53, 166, 0.2);
     --transition-speed: 0.4s;
 }
 
@@ -20,29 +19,22 @@ body {
     color: var(--text-color);
     line-height: 1.7;
     overflow-x: hidden;
-    background: #000; /* Fallback para quando o vídeo não carrega */
+    background: #000;
 }
 
-/* Header melhorado */
+/* Header Totalmente Transparente */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
-    background-color: var(--header-bg);
-    backdrop-filter: blur(10px);
+    padding: 1.5rem 5%;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    transition: all var(--transition-speed) ease;
-    opacity: 20%;
-}
-
-header.scrolled {
-    background-color: rgba(33, 53, 166, 0.9);
-    padding: 0.8rem 5%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: transparent !important; /* Garante que não terá cor de fundo */
+    backdrop-filter: none !important; /* Remove qualquer efeito de blur */
+    border: none !important; /* Remove bordas */
 }
 
 .logo img {
@@ -55,7 +47,7 @@ header.scrolled {
     transform: scale(1.05);
 }
 
-/* Navegação aprimorada */
+/* Navegação */
 nav ul {
     display: flex;
     list-style: none;
@@ -65,7 +57,7 @@ nav ul {
 nav a {
     color: var(--text-color);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1.05rem;
     position: relative;
     padding: 0.5rem 0;
@@ -96,13 +88,14 @@ nav a:hover::after {
     cursor: pointer;
     font-size: 1.8rem;
     transition: transform 0.3s;
+    color: var(--text-color);
 }
 
 .menu-toggle.active {
     transform: rotate(90deg);
 }
 
-/* Hero section premium */
+/* Hero Section */
 .hero {
     position: relative;
     height: 100vh;
@@ -111,19 +104,16 @@ nav a:hover::after {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    margin-top: 4.5rem;
 }
 
 .hero-video {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: translate(-50%, -50%);
     z-index: -1;
-    opacity: 0.9;
 }
 
 .hero-content {
@@ -142,7 +132,7 @@ nav a:hover::after {
     margin-top: 2rem;
 }
 
-/* Botões premium */
+/* Botões */
 .btn {
     position: relative;
     padding: 1rem 2.5rem;
@@ -161,55 +151,17 @@ nav a:hover::after {
     z-index: 1;
 }
 
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background-color: var(--secondary-color);
-    transition: width var(--transition-speed);
-    z-index: -1;
-}
-
 .btn:hover {
+    background-color: var(--secondary-color);
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-.btn:hover::before {
-    width: 100%;
 }
 
 .btn:active {
     transform: translateY(-2px);
 }
 
-/* Efeitos de overlay */
-.hero::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
-    z-index: 1;
-}
-
-/* Media Queries Premium */
-@media (max-width: 992px) {
-    .hero {
-        min-height: 500px;
-    }
-    
-    .btn {
-        padding: 0.9rem 2rem;
-        font-size: 1rem;
-    }
-}
-
+/* Media Queries */
 @media (max-width: 768px) {
     header {
         padding: 1rem;
@@ -221,25 +173,21 @@ nav a:hover::after {
     
     nav ul {
         position: fixed;
-        top: 4.5rem;
+        top: 5rem;
         left: -100%;
         width: 80%;
-        height: calc(100vh - 4.5rem);
-        background-color: var(--secondary-color);
+        height: calc(100vh - 5rem);
+        background-color: rgba(33, 53, 166, 0.95);
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         padding-top: 3rem;
-        transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transition: all 0.6s ease;
         gap: 2rem;
     }
     
     nav ul.active {
         left: 0;
-    }
-    
-    nav a {
-        font-size: 1.2rem;
     }
     
     .hero-content {
@@ -258,16 +206,6 @@ nav a:hover::after {
 }
 
 @media (max-width: 480px) {
-    .hero {
-        min-height: 450px;
-        margin-top: 3.5rem;
-    }
-    
-    header {
-        padding: 0.8rem;
-        opacity: 20%;
-    }
-    
     .logo img {
         height: 2rem;
     }
@@ -280,20 +218,5 @@ nav a:hover::after {
     
     nav ul {
         width: 100%;
-    }
-}
-
-/* Animação suave ao rolar */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Melhorias de performance */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
     }
 }
