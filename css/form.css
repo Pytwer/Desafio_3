@@ -42,8 +42,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Mantém fixo durante o scroll */
-    position: fixed;
+    position: fixed; 
     top: 0;
     right: 0;
     height: 100vh;
