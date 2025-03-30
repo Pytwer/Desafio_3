@@ -454,7 +454,7 @@ input[type="file"] {
     /* UPLOAD FILES */
     .file-upload {
         width: 100%;
-        max-width: 250px; /* Mesma largura máxima dos botões de trilha */
+        max-width: 200px; 
         margin-left: auto;
         margin-right: auto;
         padding: 15px;
