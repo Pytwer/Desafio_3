@@ -23,7 +23,6 @@ body {
     flex-direction: column;
     min-height: 100vh; /* Mudei de height para min-height */
     overflow-x: hidden; /* Só esconde o overflow horizontal */
-    overflow-y: hidden;
 }
 
 /* Ajusta o container principal */
