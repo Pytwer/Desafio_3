@@ -45,7 +45,7 @@ body {
     position: fixed; 
     top: 0;
     right: 0;
-    height: 100vh;
+    height: 10vh;
     z-index: 1;
 }
 .form {
