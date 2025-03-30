@@ -21,15 +21,16 @@ body {
     background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
-    height: 100vh; /* Faz o body ocupar toda a altura da tela */
-    overflow-y: hidden; /* Adiciona scrollbar */
+    min-height: 100vh; /* Mudei de height para min-height */
+    overflow-x: hidden; /* Só esconde o overflow horizontal */
 }
 
-/* Layout de duas colunas */
+/* Ajusta o container principal */
 .container {
-    display: flex; /* flexbox */
-    width: 100%; /* Ocupa toda a largura */
-    height: 650px; /* Altura total do formulário */
+    display: flex;
+    width: 100%;
+    min-height: 100vh; /* Altura mínima da viewport */
+    height: auto; /* Altura automática */
 }
 
 /* Coluna do formulário */
