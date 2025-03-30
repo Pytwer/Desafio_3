@@ -3,21 +3,18 @@
 *{
     font-family: 'Poppins', sans-serif;
 }
-
 .menu-container {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
     text-align: center;
 }
-
 .menu-options {
     display: flex;
     flex-direction: column;
     gap: 15px;
     margin-top: 30px;
 }
-
 .menu-button {
     padding: 12px 20px;
     background-color: #4CAF50;
@@ -27,15 +24,12 @@
     font-size: 18px;
     transition: background-color 0.3s;
 }
-
 .menu-button:hover {
     background-color: #45a049;
 }
-
 .logout {
     background-color: #f44336;
 }
-
 .logout:hover {
     background-color: #d32f2f;
 }

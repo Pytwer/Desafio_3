@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
 * {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -15,8 +13,6 @@ body {
     color: #333;
     overflow-y: hidden;
 }
-
-/* Vídeo de fundo */
 .video-background {
     position: fixed;
     top: 0;
@@ -26,24 +22,17 @@ body {
     z-index: -1;
     overflow: hidden;
 }
-
 .video-background video {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
-/* Vídeo específico para desktop (visível inicialmente) */
 .desktop-video {
     display: block;
 }
-
-/* Vídeo específico para mobile (oculto inicialmente) */
 .mobile-video {
     display: none;
 }
-
-/* Container principal */
 .login-container {
     flex: 1;
     display: flex;
@@ -53,8 +42,6 @@ body {
     position: relative;
     z-index: 1;
 }
-
-/* Formulários */
 #loginForm, #registerForm {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 30px;
@@ -66,13 +53,11 @@ body {
     transition: all 0.3s ease;
     backdrop-filter: blur(5px);
 }
-
 #loginForm h2, #registerForm h2 {
     margin-bottom: 20px;
     font-size: 24px;
     color: #007bff;
 }
-
 #loginForm input, #registerForm input {
     width: 100%;
     padding: 12px;
@@ -82,12 +67,10 @@ body {
     font-size: 16px;
     transition: border-color 0.3s ease;
 }
-
 #loginForm input:focus, #registerForm input:focus {
     border-color: #007bff;
     outline: none;
 }
-
 #loginForm button, #registerForm button {
     width: 100%;
     padding: 12px;
@@ -99,66 +82,51 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
 #loginForm button:hover, #registerForm button:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
 }
-
-/* Links de alternância */
 .register-link, .login-link {
     margin-top: 15px;
     font-size: 14px;
 }
-
 .register-link a, .login-link a {
     color: #007bff;
     text-decoration: none;
     transition: color 0.3s ease;
 }
-
 .register-link a:hover, .login-link a:hover {
     color: #0056b3;
     text-decoration: underline;
 }
-
-/* Media Queries para Mobile */
 @media (max-width: 768px) {
-    /* Alterna os vídeos */
     .desktop-video {
         display: none;
     }
     .mobile-video {
         display: block;
     }
-
-    /* Ajustes no formulário para mobile */
     #loginForm, #registerForm {
         padding: 25px;
         max-width: 350px;
         background-color: rgba(255, 255, 255, 0.95);
     }
-
     #loginForm h2, #registerForm h2 {
         font-size: 22px;
     }
-
     #loginForm input, #registerForm input {
         padding: 10px;
         font-size: 15px;
     }
 }
-
 @media (max-width: 480px) {
     #loginForm, #registerForm {
         padding: 20px;
         max-width: 300px;
     }
-
     #loginForm h2, #registerForm h2 {
         font-size: 20px;
     }
-
     #loginForm input, #registerForm input {
         font-size: 14px;
     }
