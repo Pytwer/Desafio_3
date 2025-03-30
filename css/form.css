@@ -386,61 +386,79 @@ input[type="file"] {
     }
 }
 
-/* Estilos para mobile (até 767px) */
 @media (max-width: 767px) {
     .container {
-        flex-direction: column; /* Coloca as colunas em vertical */
+        flex-direction: column;
         height: auto; /* Altura automática */
     }
     
-    .image-column {
-        display: none; /* Esconde a coluna da imagem */
-    }
-    
     .form-column {
-        width: 100%; /* Ocupa toda a largura */
-        padding: 15px; /* Padding menor */
+        width: 100%;
+        padding: 15px;
+        overflow-y: visible; /* Permite que o conteúdo ultrapasse */
+        height: auto; /* Altura automática */
+        min-height: 100vh; /* Garante que ocupe pelo menos a tela toda */
     }
     
-    .row {
-        flex-direction: column; /* Coloca os campos em vertical */
-        gap: 10px; /* Espaçamento menor */
+    /* Aumenta o espaçamento entre seções */
+    .form h2 {
+        margin-top: 30px;
+        margin-bottom: 15px;
     }
     
-    .trilhas {
-        grid-template-columns: 1fr; /* Uma coluna para as trilhas */
+    /* Aumenta o espaçamento geral do formulário */
+    form {
+        gap: 25px;
+        padding-bottom: 50px; /* Espaço extra no final para scroll */
     }
     
-    .custom-checkbox {
-        width: 100%; /* Ocupa toda a largura */
+    /* Ajusta os inputs para mobile */
+    input, select, button {
+        padding: 12px;
+        font-size: 16px;
     }
     
+    /* Aumenta o tamanho das checkboxes de termos */
+    .terms input[type="checkbox"] {
+        transform: scale(1.3);
+        margin-right: 10px;
+    }
+    
+    /* Ajusta o botão de upload para mobile */
     .file-upload {
-        width: 100%; /* Ocupa toda a largura */
-        padding: 15px; /* Padding menor */
+        padding: 25px;
     }
     
-    .botao-container {
-        justify-content: center; /* Centraliza o botão */
-        gap: 15px; /* Espaçamento menor */
-    }
-    
+    /* Garante que o botão de inscrição tenha tamanho adequado */
     .inscricao {
-        width: 100%; /* Botão ocupa toda a largura */
+        height: 50px;
+        font-size: 16px;
+        margin-bottom: 30px; /* Espaço extra no final */
     }
 }
 
 /* Estilos para mobile pequeno (até 480px) */
 @media (max-width: 480px) {
     .form h1 {
-        font-size: 24px; /* Título menor */
+        font-size: 26px;
+        margin-bottom: 25px;
     }
     
     .form h2 {
-        font-size: 18px; /* Subtítulo menor */
+        font-size: 20px;
     }
     
-    input, select, button {
-        font-size: 14px; /* Fonte menor para inputs */
+    /* Aumenta ainda mais o espaçamento */
+    form {
+        gap: 30px;
+    }
+    
+    /* Ajusta o grid de trilhas */
+    .trilhas {
+        gap: 15px;
+    }
+    
+    .custom-checkbox {
+        height: 160px; /* Mais alto para facilitar toque */
     }
 }
