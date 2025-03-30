@@ -172,7 +172,7 @@ nav a:hover::after {
     
     nav ul {
         position: fixed;
-        top: 5rem;
+        top: 3rem;
         left: -100%;
         width: 80%;
         height: calc(100vh - 5rem);
