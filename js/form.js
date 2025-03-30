@@ -100,3 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return isValid;
     }
 });
+const date = document.getElementById('date');
+const hoje = new Date().toISOString().split('T')[0];
+date.setAttribute('max', hoje);
+dataInput.value = hoje;
