@@ -42,10 +42,11 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    position: fixed; 
+    background-attachment: fixed; /* Mantém fixo durante o scroll */
+    position: fixed;
     top: 0;
     right: 0;
-    height: 10vh;
+    height: 100vh;
     z-index: 1;
 }
 .form {
