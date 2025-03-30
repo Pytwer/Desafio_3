@@ -454,14 +454,14 @@ input[type="file"] {
     /* UPLOAD FILES */
     .file-upload {
         width: 100%;
-        max-width: 280px; /* Mesma largura máxima dos botões de trilha */
+        max-width: 300px; /* Mesma largura máxima dos botões de trilha */
         margin-left: auto;
         margin-right: auto;
         padding: 15px;
     }
 
     .file-upload img {
-        width: 50px; /* Ícone menor */
+        width: 80px; /* Ícone menor */
         height: 50px;
     }
 
