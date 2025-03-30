@@ -173,8 +173,8 @@ nav a:hover::after {
     nav ul {
         position: fixed;
         top: 3rem;
-        left: -100%;
-        width: 80%;
+        left: -90%;
+        width: 90%;
         height: calc(100vh - 5rem);
         background-color: rgba(33, 53, 166, 0.95);
         flex-direction: column;
