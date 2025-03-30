@@ -450,7 +450,7 @@ input[type="file"] {
         font-size: 14px;
         white-space: normal; /* Permite quebra de linha */
     }
-}
+
     /* UPLOAD FILES */
     .file-upload {
         width: 100%;
