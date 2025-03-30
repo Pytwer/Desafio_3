@@ -39,14 +39,10 @@ body {
 .image-column {
     width: 40%;
     background-image: url('/img/bannerform.png');
-    background-size: cover;
+    background-size: auto;
     background-position: center center; /* Garante que o centro esteja sempre visível */
     background-repeat: no-repeat;
     position: sticky;
-    top: 0; /* Alterado para top: 0 para melhor aderência */
-    height: 100vh; /* Ocupa 100% da altura da viewport */
-    min-height: 650px; /* Altura mínima para evitar distorções */
-    background-attachment: local; /* Mantém o background fixo durante scroll 
 }
 .form {
     max-width: 800px; 
