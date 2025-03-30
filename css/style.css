@@ -6,22 +6,18 @@
     --text-color: #ffffff;
     --transition-speed: 0.4s;
 }
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
 body {
     color: var(--text-color);
     line-height: 1.7;
     overflow-y: hidden;
     background: #000;
 }
-
-/* Header Totalmente Transparente */
 header {
     display: flex;
     justify-content: space-between;
@@ -33,24 +29,19 @@ header {
     z-index: 1000;
     background-color: transparent;
 }
-
 .logo img {
     height: 2.5rem;
     width: auto;
     transition: transform var(--transition-speed);
 }
-
 .logo:hover img {
     transform: scale(1.05);
 }
-
-/* Navegação */
 nav ul {
     display: flex;
     list-style: none;
     gap: 1.5rem;
 }
-
 nav a {
     color: var(--text-color);
     text-decoration: none;
@@ -60,7 +51,6 @@ nav a {
     padding: 0.5rem 0;
     transition: color var(--transition-speed);
 }
-
 nav a::after {
     content: '';
     position: absolute;
@@ -71,15 +61,12 @@ nav a::after {
     background-color: var(--primary-color);
     transition: width var(--transition-speed);
 }
-
 nav a:hover {
     color: var(--primary-color);
 }
-
 nav a:hover::after {
     width: 100%;
 }
-
 .menu-toggle {
     display: none;
     cursor: pointer;
@@ -87,8 +74,6 @@ nav a:hover::after {
     transition: transform 0.3s;
     color: var(--text-color);
 }
-
-/* Hero Section */
 .hero {
     position: relative;
     height: 100vh;
@@ -99,7 +84,6 @@ nav a:hover::after {
     overflow: hidden;
     padding-bottom: 15vh;
 }
-
 .hero-video {
     position: absolute;
     top: 0;
@@ -109,12 +93,9 @@ nav a:hover::after {
     object-fit: cover;
     z-index: -1;
 }
-
-/* Vídeo mobile (inicialmente oculto) */
 .mobile-video {
     display: none;
 }
-
 .hero-content {
     width: 100%;
     max-width: 600px;
@@ -122,7 +103,6 @@ nav a:hover::after {
     text-align: center;
     z-index: 2;
 }
-
 .hero-buttons {
     display: flex;
     flex-wrap: wrap-reverse;
@@ -130,8 +110,6 @@ nav a:hover::after {
     gap: 1.5rem;
     margin-top: 3rem;
 }
-
-/* Botões */
 .btn {
     position: relative;
     padding: 1rem 2.5rem;
@@ -148,31 +126,24 @@ nav a:hover::after {
     min-width: 220px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
-
 .btn:hover {
     background-color: var(--secondary-color);
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
-
-/* Media Queries */
 @media (max-width: 768px) {
-    /* Mostra vídeo mobile e esconde o desktop */
     .desktop-video {
         display: none;
     }
     .mobile-video {
         display: block;
     }
-    
     header {
         padding: 1rem;
-    }
-    
+    }   
     .menu-toggle {
         display: block;
     }
-    
     nav ul {
         position: fixed;
         top: 5rem;
@@ -186,33 +157,27 @@ nav a:hover::after {
         padding-top: 3rem;
         transition: all 0.6s ease;
         gap: 2rem;
-    }
-    
+    }  
     nav ul.active {
         left: 0;
-    }
-    
+    }  
     .hero {
         min-height: 100vh;
         padding-bottom: 10vh;
-    }
-    
+    } 
     .hero-buttons {
         flex-direction: column;
         align-items: center;
     }
-    
     .btn {
         width: 100%;
         max-width: 280px;
     }
 }
-
 @media (max-width: 480px) {
     .logo img {
         height: 2rem;
     }
-    
     .btn {
         padding: 0.8rem 1.5rem;
         min-width: 180px;
