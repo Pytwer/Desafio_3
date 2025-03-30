@@ -42,14 +42,12 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    position: fixed; /* Alterado de sticky para fixed */
+    position: fixed; 
     top: 0;
-    right: 0; /* Posiciona na direita (ajuste conforme necessário) */
+    right: 0;
     height: 100vh;
-    z-index: 1; /* Garante que fique atrás do conteúdo do formulário */
+    z-index: 1;
 }
-
-
 .form {
     max-width: 800px; 
 }
@@ -173,10 +171,9 @@ input[type="file"] {
     justify-content: flex-end;
     gap: 30px;
     margin-top: 30px;
-    position: relative; /* Adicionado */
-    z-index: 2; /* Garante que fique acima de outros elementos */
+    position: relative; 
+    z-index: 2; 
 }
-
 .inscricao {
     background-color: #f3541c;
     border: none;
@@ -187,9 +184,9 @@ input[type="file"] {
     text-align: center;
     font-size: 14px;
     cursor: pointer;
-    position: relative; /* Adicionado */
-    overflow: visible; /* Garante que nada seja cortado */
-    white-space: nowrap; /* Mantém o texto em uma linha */
+    position: relative; 
+    overflow: visible; 
+    white-space: nowrap; 
 }
 .inscricao:hover {
     background-color: #d84315;
