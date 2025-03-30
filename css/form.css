@@ -22,170 +22,147 @@ body {
     background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Mudei de height para min-height */
+    min-height: 100vh; 
 }
-
-/* Ajusta o container principal */
 .container {
     display: flex;
     width: 100%;
-    min-height: 100vh; /* Altura mínima da viewport */
-    height: auto; /* Altura automática */
+    min-height: 100vh; 
+    height: auto; 
 }
-
-/* Coluna do formulário */
 .form-column {
-    flex: 1; /* Ocupa o espaço restante */
-    padding: 30px; /* Espaçamento da borda do site */
-    overflow-y: auto; /* Adiciona scrollbar */
+    flex: 1; 
+    padding: 30px; 
+    overflow-y: auto; 
 
 }
-
-/* Coluna da imagem */
 .image-column {
-    width: 40%; /* Largura da coluna da imagem */
-    background-image: url('/img/bannerform.png'); /* Substitua pelo caminho da sua imagem */
-    background-size: cover; /* Faz a imagem cobrir toda a área */
-    background-position: center; /* Centraliza a imagem */
-    background-repeat: no-repeat; /* Evita repetição da imagem */
-    position: sticky; /* Fixa a imagem enquanto o formulário rola */
-    top: 80px; /* Alinha com o topo do container */
-    height: auto; /* Altura total menos o header */
+    width: 40%; 
+    background-image: url('/img/bannerform.png'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    position: sticky; 
+    top: 80px; 
+    height: auto; 
 }
-
-/* Estilos do Formulário */
 .form {
-    max-width: 800px; /* Largura máxima do formulário */
+    max-width: 800px; 
 }
-
 .form h1 {
-    text-align: left; /* Alinhado à esquerda */
-    color: #000000; /* Cor do titulo */
-    margin-bottom: 20px; /* Espaçamento */
+    text-align: left; 
+    color: #000000; 
+    margin-bottom: 20px;
 }
-
 .form h2 {
-    color: #000000; /* Cor do subtitulo */
-    margin-top: 20px; /* Espaçamento */
-    margin-bottom: 10px; /* Espaçamento */
-    text-align: left; /* Alinhado à esquerda */
+    color: #000000;
+    margin-top: 20px; 
+    margin-bottom: 10px; 
+    text-align: left;
 }
-
 form {
-    display: flex; /* flexbox */
-    flex-direction: column; /* Coluna */
-    gap: 20px; /* Espaçamento entre os elementos */ 
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px;
 }
-
 label {
-    font-weight: bold;  /* Define a fonte como negrito */
-    margin-bottom: 5px; /* Espaçamento */
-    text-align: left; /* Alinhado à esquerda */
+    font-weight: bold;  
+    margin-bottom: 5px; 
+    text-align: left; 
 }
-
 input, select, button {
-    padding: 10px;  /* Espaçamento interno */
-    font-size: 16px; /* Tamanho da fonte */
-    border: 1px solid #ccc; /* Cor da borda */
-    border-radius: 5px; /* Borda arredondada */
-    width: 100%; /* Ocupa toda a largura */
-    box-sizing: border-box; /* Inclui padding e borda na largura */
+    padding: 10px; 
+    font-size: 16px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
 }
-
-.button{ /* Estilos do botão */
-    background-color: #0080ff; /* Cor do botão */
-    color: white; /* Cor do texto */
-    cursor: pointer; /* Muda o cursor ao passar o mouse */
-    transition: background-color 0.3s; /* Animação ao passar o mouse */
+.button{ 
+    background-color: #0080ff; 
+    color: white;
+    cursor: pointer; 
+    transition: background-color 0.3s; 
 }
-
-button:hover { /* Cor ao passar o mouse */
-    background-color: #1abc9c; /* Cor ao passar o mouse */
+button:hover { 
+    background-color: #1abc9c; 
 }
-
-.row { /* Layout de duas colunas */
-    display: flex; /* flexbox */
-    gap: 15px; /* Espaçamento entre os elementos */
+.row { 
+    display: flex; 
+    gap: 15px; 
 }
-
 .row > div {
-    flex: 1; /* Ocupa o espaço restante */
+    flex: 1;
 }
-
 .terms {
-    display: flex; /* flexbox */
-    align-items: center; /* Centraliza os elementos */
-    gap: 10px; /* Espaçamento entre os elementos */
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
 }
-
 .terms input {
-    width: auto; /* Largura automática */
+    width: auto; 
 }
-
 input[type="file"] {
-    padding: 5px; /* Espaçamento interno */
+    padding: 5px; 
 }
 .trilha-option {
-    display: flex; /* flexbox */
-    flex-direction: column; /* Coluna */
-    align-items: center; /* Centraliza os elementos */
-    border: 3px solid #ccc; /* Cor da borda */
-    border-radius: 8px; /* Arredonda a borda */
-    padding: 20px; /* Espaçamento interno */
-    cursor: pointer; /* Muda o cursor ao passar o mouse */
-    transition: border-color 0.3s, background-color 0.3s; /* Animação ao passar o mouse */
-    width: 340px; /* Largura do botão */
-    box-sizing: border-box; /* Inclui padding e borda na largura */
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    border: 3px solid #ccc; 
+    border-radius: 8px; 
+    padding: 20px;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s; 
+    width: 340px;
+    box-sizing: border-box; 
 }
-
 .trilha-option input[type="radio"] {
-    display: none; /* Esconde o input */
+    display: none; 
 }
-
 .trilha-option img {
-    width: 100px; /* Largura da imagem */
-    height: 100px; /* Altura da imagem */
-    object-fit: cover; /* Ajusta a imagem ao tamanho do botão */
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
 }
-
 .trilha-option span {
-    margin-top: 10px; /* Espaçamento do texto */
-    font-size: 14px; /* Tamanho da fonte */
-    text-align: center; /* Alinhado ao centro */
-    color: #333; /* Cor do texto */
+    margin-top: 10px; 
+    font-size: 14px; 
+    text-align: center;
+    color: #333; 
 }
 .trilha-option.selected {
-    border-color: #e43a12; /* Cor da borda */
+    border-color: #e43a12; 
 }
 .trilha-option:hover {
-    border-color: #e43a12; /* Cor da borda */
+    border-color: #e43a12; 
 }
 .file-upload {
-    display: flex; /* flexbox */
-    flex-direction: column; /* Coluna */
-    align-items: center; /* Centraliza os elementos */
-    cursor: pointer; /* Muda o cursor ao passar o mouse */
-    width: 700px; /* Largura */
-    height: auto; /* Altura */
-    border: 2px dashed #ccc;   /* Cor da borda */
-    border-radius: 8px; /* Arredonda a borda */
-    padding: 20px; /* Espaçamento interno */
-    transition: border-color 0.3s; /* Animação ao passar o mouse */
-    overflow: hidden; /* Esconde o conteúdo que ultrapassa o botão*/
-    margin: 0 auto; /* Centraliza o botão */
-    gap: 10px; /* Espaçamento entre os elementos */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    cursor: pointer;
+    width: 700px;
+    height: auto;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px; 
+    transition: border-color 0.3s; 
+    overflow: hidden; 
+    margin: 0 auto; 
+    gap: 10px;
 }
 .file-upload img {
-    width: 100px;   /* Largura da imagem */
-    height: 100px; /* Altura da imagem */
-    object-fit: cover; /* Ajusta a imagem ao tamanho do container */
-    transition: transform 0.3s; /* Animação ao passar o mouse */
+    width: 100px;   
+    height: 100px; 
+    object-fit: cover; 
+    transition: transform 0.3s; 
 }
 .file-upload:hover img {
-    transform: scale(0.9); /* Diminui a imagem ao passar o mouse */
+    transform: scale(0.9);
 }
 .file-upload:hover {
-    border-color: #0080ff; /* Cor do botão */
+    border-color: #0080ff; 
 }
 .botao-container {
     display: flex;
@@ -266,18 +243,15 @@ input[type="file"] {
     background-color: #f3541c;
     border-color: #f3541c;
 }
-
 .custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
     content: '✔';
     font-size: 12px;
     color: white;
 }
-
 .custom-checkbox.selected {
-    border-color: #f3541c; /* Borda destacada */
-    background-color: #f0f0f0; /* Exemplo de estilo para o estado selecionado */
+    border-color: #f3541c; 
+    background-color: #f0f0f0;
 }
-
 .custom-checkbox .content {
     display: flex;
     flex-direction: column;
@@ -285,12 +259,10 @@ input[type="file"] {
     gap: 10px;
     margin-top: 20px;
 }
-
 .custom-checkbox img {
     max-width: 30%;
     height: auto;
 }
-
 .custom-checkbox .texto {
     font-size: 16px;
     color: #333;
@@ -302,7 +274,6 @@ input[type="file"] {
     background-color: #f3541c;
     border-color: #f3541c;
 }
-
 .custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
     content: '✔';
     position: absolute;
@@ -312,26 +283,23 @@ input[type="file"] {
     color: white;
     transition: left 0.3s ease; 
 }
-
 .custom-checkbox:hover {
     border-color: #f3541c;
 }
-
 .custom-checkbox span {
     font-size: 15px;
     color: #333;
     text-align: center;
 }
 .custom-checkbox input[type="radio"] {
-    display: none; /* Esconde o input */
+    display: none; 
 }
 .custom-checkbox .content {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-}/* Adicione ao seu arquivo form.css */
-/* Estilos do overlay de carregamento */
+}
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -370,69 +338,51 @@ input[type="file"] {
     color: #333;
     margin-top: 15px;
 }
-/* Adicione estas regras no final do seu arquivo CSS */
-
-/* ESTILOS GERAIS PARA MOBILE (max-width: 767px) */
 @media (max-width: 767px) {
-    /* Reset de estilos para mobile */
     body {
         overflow-x: scroll;
         height: auto;
     }
-
     .container {
         flex-direction: column;
         height: auto;
         min-height: 100vh;
     }
-
     .image-column {
         display: none;
     }
-
-    /* FORMULÁRIO PRINCIPAL */
     .form-column {
         width: 100%;
         padding: 20px 15px;
         overflow-y: auto;
     }
-
-    /* TIPOGRAFIA MOBILE */
     .form h1 {
         font-size: 22px;
         margin-bottom: 20px;
         line-height: 1.3;
     }
-
     .form h2 {
         font-size: 18px;
         margin: 25px 0 15px 0;
     }
-
-    /* ELEMENTOS DO FORMULÁRIO */
     form {
         gap: 20px;
         padding-bottom: 40px;
     }
-
     label {
         font-size: 15px;
         margin-bottom: 8px;
         display: block;
     }
-
     input, select, button {
         padding: 15x 25px;
         font-size: 15px;
         border-radius: 8px;
     }
-
-    /* GRID DE TRILHAS */
     .trilhas {
         grid-template-columns: 1fr;
         gap: 15px;
     }
-
     .custom-checkbox {
         width: 100%; /* Ocupa 100% mas com margens */
         max-width: 250px; /* Largura máxima reduzida */
@@ -441,17 +391,13 @@ input[type="file"] {
         height: 130px; /* Altura um pouco menor */
         padding: 15px;
     }
-
     .custom-checkbox img {
-        max-width: 35px; /* Ícone um pouco menor */
+        max-width: 35px; 
     }
-
     .custom-checkbox .texto {
         font-size: 14px;
-        white-space: normal; /* Permite quebra de linha */
+        white-space: normal; 
     }
-
-    /* UPLOAD FILES */
     .file-upload {
         width: 100%;
         max-width: 600px; 
@@ -459,58 +405,45 @@ input[type="file"] {
         margin-right: auto;
         padding: 15px;
     }
-
     .file-upload img {
         width: 80px; /* Ícone menor */
         height: 50px;
     }
-
-    /* CHECKBOX TERMOS */
     .terms {
         align-items: flex-start;
         margin: 10px 0;
     }
-
     .terms input[type="checkbox"] {
         width: 18px;
         height: 18px;
         margin-top: 3px;
     }
-
     .terms label {
         font-size: 13px;
         line-height: 1.4;
         margin-left: 10px;
     }
-
-    /* BOTÕES */
     .botao-container {
         flex-direction: column;
         gap: 15px;
         margin-top: 30px;
     }
-
     .inscricao {
         width: 100%;
         height: 50px;
         font-size: 16px;
     }
 }
-
-/* AJUSTES PARA TELAS MUITO PEQUENAS (max-width: 400px) */
 @media (max-width: 400px) {
     .form-column {
         padding: 15px 10px;
     }
-
     .form h1 {
         font-size: 20px;
     }
-
     input, select, button {
         padding: 10px 12px;
     }
-
     .custom-checkbox {
         height: 130px;
     }
