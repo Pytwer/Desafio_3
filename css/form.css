@@ -422,7 +422,7 @@ input[type="file"] {
     }
 
     input, select, button {
-        padding: 25px;
+        padding: 20x 20px;
         font-size: 15px;
         border-radius: 8px;
     }
