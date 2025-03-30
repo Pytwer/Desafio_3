@@ -10,9 +10,19 @@
 <body>
     
     <div class="login-container" id="formContainer">
-        <video autoplay muted loop class="hero-video">
-            <source src="/mp4/bannerlogin.mp4" type="video/mp4">
-        </video>
+        <div class="video-background">
+            <!-- Vídeo para Desktop -->
+            <video autoplay muted loop class="desktop-video">
+                <source src="/mp4/bannerlogin.mp4" type="video/mp4">
+                Seu navegador não suporta vídeos HTML5.
+            </video>
+            
+            <!-- Vídeo para Mobile -->
+            <video autoplay muted loop class="mobile-video">
+                <source src="/mp4/banner-mobile.mp4" type="video/mp4">
+                Seu navegador não suporta vídeos HTML5.
+            </video>
+        </div>
         <!-- Formulário de Login -->
         <form id="loginForm">
             <h2>Login</h2>
