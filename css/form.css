@@ -23,6 +23,7 @@ body {
     flex-direction: column;
     min-height: 100vh; /* Mudei de height para min-height */
     overflow-x: hidden; /* Só esconde o overflow horizontal */
+    overflow-y: hidden;
 }
 
 /* Ajusta o container principal */
@@ -372,94 +373,139 @@ input[type="file"] {
 }
 /* Adicione estas regras no final do seu arquivo CSS */
 
-/* Estilos para tablets (768px a 1024px) */
-@media (max-width: 1024px) {
-    .image-column {
-        width: 30%; /* Reduz a largura da coluna da imagem */
-    }
-    
-    .form-column {
-        padding: 20px; /* Reduz o padding */
-    }
-    
-    .file-upload {
-        width: 100%; /* Ajusta a largura do upload */
-    }
-}
-
+/* ESTILOS GERAIS PARA MOBILE (max-width: 767px) */
 @media (max-width: 767px) {
+    /* Reset de estilos para mobile */
+    body {
+        overflow-x: hidden;
+        height: auto;
+    }
+
     .container {
         flex-direction: column;
-        height: auto; /* Altura automática */
+        height: auto;
+        min-height: 100vh;
     }
-    
+
+    .image-column {
+        display: none;
+    }
+
+    /* FORMULÁRIO PRINCIPAL */
     .form-column {
         width: 100%;
-        padding: 15px;
-        overflow-y: visible; /* Permite que o conteúdo ultrapasse */
-        height: auto; /* Altura automática */
-        min-height: 100vh; /* Garante que ocupe pelo menos a tela toda */
+        padding: 20px 15px;
+        overflow-y: auto;
     }
-    
-    /* Aumenta o espaçamento entre seções */
+
+    /* TIPOGRAFIA MOBILE */
+    .form h1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+        line-height: 1.3;
+    }
+
     .form h2 {
-        margin-top: 30px;
-        margin-bottom: 15px;
+        font-size: 18px;
+        margin: 25px 0 15px 0;
     }
-    
-    /* Aumenta o espaçamento geral do formulário */
+
+    /* ELEMENTOS DO FORMULÁRIO */
     form {
-        gap: 25px;
-        padding-bottom: 50px; /* Espaço extra no final para scroll */
+        gap: 20px;
+        padding-bottom: 40px;
     }
-    
-    /* Ajusta os inputs para mobile */
+
+    label {
+        font-size: 15px;
+        margin-bottom: 8px;
+        display: block;
+    }
+
     input, select, button {
-        padding: 12px;
-        font-size: 16px;
+        padding: 12px 15px;
+        font-size: 15px;
+        border-radius: 8px;
     }
-    
-    /* Aumenta o tamanho das checkboxes de termos */
-    .terms input[type="checkbox"] {
-        transform: scale(1.3);
-        margin-right: 10px;
+
+    /* GRID DE TRILHAS */
+    .trilhas {
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
-    
-    /* Ajusta o botão de upload para mobile */
+
+    .custom-checkbox {
+        width: 100%;
+        height: 140px;
+        padding: 15px;
+    }
+
+    .custom-checkbox img {
+        max-width: 40px;
+    }
+
+    .custom-checkbox .texto {
+        font-size: 14px;
+    }
+
+    /* UPLOAD FILES */
     .file-upload {
-        padding: 25px;
+        width: 100%;
+        padding: 25px 15px;
     }
-    
-    /* Garante que o botão de inscrição tenha tamanho adequado */
+
+    .file-upload img {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* CHECKBOX TERMOS */
+    .terms {
+        align-items: flex-start;
+        margin: 10px 0;
+    }
+
+    .terms input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin-top: 3px;
+    }
+
+    .terms label {
+        font-size: 13px;
+        line-height: 1.4;
+        margin-left: 10px;
+    }
+
+    /* BOTÕES */
+    .botao-container {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
     .inscricao {
+        width: 100%;
         height: 50px;
         font-size: 16px;
-        margin-bottom: 30px; /* Espaço extra no final */
     }
 }
 
-/* Estilos para mobile pequeno (até 480px) */
-@media (max-width: 480px) {
-    .form h1 {
-        font-size: 26px;
-        margin-bottom: 25px;
+/* AJUSTES PARA TELAS MUITO PEQUENAS (max-width: 400px) */
+@media (max-width: 400px) {
+    .form-column {
+        padding: 15px 10px;
     }
-    
-    .form h2 {
+
+    .form h1 {
         font-size: 20px;
     }
-    
-    /* Aumenta ainda mais o espaçamento */
-    form {
-        gap: 30px;
+
+    input, select, button {
+        padding: 10px 12px;
     }
-    
-    /* Ajusta o grid de trilhas */
-    .trilhas {
-        gap: 15px;
-    }
-    
+
     .custom-checkbox {
-        height: 160px; /* Mais alto para facilitar toque */
+        height: 130px;
     }
 }
