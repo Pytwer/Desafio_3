@@ -450,7 +450,7 @@ input[type="file"] {
     /* UPLOAD FILES */
     .file-upload {
         width: 100%;
-        padding: 25px 15px;
+        padding: 20px 15px;
     }
 
     .file-upload img {
