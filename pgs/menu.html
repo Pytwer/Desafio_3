@@ -1,24 +1,70 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Principal</title>
+    <title>Menu</title>
     <link rel="stylesheet" href="/css/menu.css">
+    <script src="/js/app.js" defer></script>
+    <script src="/js/auth.js" defer></script>
+    <script src="/js/db.js" defer></script>
+
 </head>
 <body>
-    <div class="menu-container">
-        <h1>Bem-vindo ao Programa Trilhas</h1>
-        <div class="menu-options">
-            <a href="/pgs/inscrição.html" class="menu-button">Inscrição</a>
-            <a href="/index.html" class="menu-button logout">Sair</a>
+    <div class="container">
+        <div class="flex flex-1">
+                <div class="sidebar">
+                    <div>
+                        <div class="logo">
+                            <img src="/img/logo.png" alt="Logo do Projeto">
+                        </div>
+                        <div class="user-info">
+                            <img alt="User avatar" src="/img/icon.png"/>
+                            <h3>000.000.000-0</h3>       
+                        </div>
+                    <div class="menu-title">
+                        MENU
+                    </div>
+                    <ul>
+                        <li>
+                            <i class="fas fa-key"></i>
+                            <a href="#">
+                                Altere a Senha
+                            </a>
+                        </li>
+                        <li>
+                            <i class="fas fa-sign-out-alt"></i>
+                            <a id="logoutLink" href="/index.html">
+                                Sair
+                            </a>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+        </div>
+        <div class="main-content">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>
+                            Inscrição
+                        </span>
+                    </div>
+                    <div class="buttons">
+                        <a href="/pgs/inscrição.html" class="btn" id="editButton">
+                            <button id="editButton">
+                                <span>Editar</span>
+                            </button>
+                        </a>
+                        <button id="downloadButton">
+                            <i class="fas fa-download"></i>
+                            <span>
+                                Comprovante
+                            </span>
+                        </button>
+                    </div>
+                </div>
         </div>
     </div>
-    <script>
-        // Adicione logout ao clicar em Sair
-        document.querySelector('.logout').addEventListener('click', function() {
-            sessionStorage.removeItem('loggedInUser');
-        });
-    </script>
 </body>
 </html>
