@@ -146,35 +146,50 @@
             const gender = document.getElementById('gender').value;
             const email = document.getElementById('email').value;
             const telephone = document.getElementById('telephone').value;
-            const identityFile = document.getElementById('identity').files[0];
-            const residenceFile = document.getElementById('residence-proof').files[0];
+            const identityFile = document.getElementById('identity').files[0]; // PDF do documento de identidade
+            const residenceFile = document.getElementById('residence-proof').files[0]; // PDF do comprovante de residência
             const cep = document.getElementById('cep').value;
             const street = document.getElementById('street').value;
             const number = document.getElementById('number').value;
             const city = document.getElementById('city').value;
             const state = document.getElementById('state').value;
     
-            // Capturar trilhas de aprendizagem em variáveis separadas
-            const trilhaFrontend = document.getElementById('trilha_frontend').checked ? 'Programação Front-end' : '';
-            const trilhaBackend = document.getElementById('trilha_backend').checked ? 'Programação Back-end' : '';
-            const trilhaJogos = document.getElementById('trilha_jogos').checked ? 'Programação em Jogos' : '';
-            const trilhaDesign = document.getElementById('trilha_design').checked ? 'Design e Experiência' : '';
-            const trilhaDados = document.getElementById('trilha_dados').checked ? 'Ciência de Dados' : '';
+            // Variável para armazenar as trilhas escolhidas
+            let chosenTrilhas = [];
+    
+            // Verificar quais trilhas foram escolhidas
+            if (document.getElementById('trilha_0').checked) {
+                chosenTrilhas.push('Programação Front-end');
+            }
+            if (document.getElementById('trilha_1').checked) {
+                chosenTrilhas.push('Programação Back-end');
+            }
+            if (document.getElementById('trilha_2').checked) {
+                chosenTrilhas.push('Programação em Jogos');
+            }
+            if (document.getElementById('trilha_3').checked) {
+                chosenTrilhas.push('Design e Experiência');
+            }
+            if (document.getElementById('trilha_4').checked) {
+                chosenTrilhas.push('Ciência de Dados');
+            }
     
             // Armazenar trilhas em localStorage
-            localStorage.setItem('trilhaFrontend', trilhaFrontend);
-            localStorage.setItem('trilhaBackend', trilhaBackend);
-            localStorage.setItem('trilhaJogos', trilhaJogos);
-            localStorage.setItem('trilhaDesign', trilhaDesign);
-            localStorage.setItem('trilhaDados', trilhaDados);
+            localStorage.setItem('chosenTrilhas', JSON.stringify(chosenTrilhas));
     
-            // Usar FileReader para ler as imagens
+            // Usar FileReader para ler os arquivos PDF
             const reader = new FileReader();
             reader.onload = function(e) {
-                const identityBase64 = e.target.result; // URL da imagem do documento de identidade
+                const identityPDF = e.target.result; // URL do PDF do documento de identidade
                 const residenceReader = new FileReader();
                 residenceReader.onload = function(e) {
-                    const residenceBase64 = e.target.result; // URL da imagem do comprovante de residência
+                    const residencePDF = e.target.result; // URL do PDF do comprovante de residência
+    
+                    // Criar objeto JSON para armazenar os PDFs
+                    const pdfsData = {
+                        identity: identityPDF,
+                        residence: residencePDF
+                    };
     
                     // Armazenar dados no localStorage
                     localStorage.setItem('name', name);
@@ -183,47 +198,46 @@
                     localStorage.setItem('gender', gender);
                     localStorage.setItem('email', email);
                     localStorage.setItem('telephone', telephone);
-                    localStorage.setItem('identity', identityBase64);
+                    localStorage.setItem('pdfs', JSON.stringify(pdfsData)); // Armazenar como JSON
                     localStorage.setItem('cep', cep);
                     localStorage.setItem('street', street);
                     localStorage.setItem('number', number);
                     localStorage.setItem('city', city);
                     localStorage.setItem('state', state);
-                    localStorage.setItem('residenceProof', residenceBase64);
     
                     alert('Dados salvos com sucesso!');
                 };
     
                 if (residenceFile) {
-                    residenceReader.readAsDataURL(residenceFile); // Lê o arquivo de imagem do comprovante de residência
+                    residenceReader.readAsDataURL(residenceFile); // Lê o arquivo PDF do comprovante de residência
                 } else {
                     residenceReader.onload(); // Chama a função se não houver arquivo
                 }
             };
     
             if (identityFile) {
-                reader.readAsDataURL(identityFile); // Lê o arquivo de imagem do documento de identidade
+                reader.readAsDataURL(identityFile); // Lê o arquivo PDF do documento de identidade
             } else {
                 reader.onload(); // Chama a função se não houver arquivo
             }
-                function validateForm() {
-                    let isValid = true;
-                    const required = form.querySelectorAll('[required]');
-                    
-                    required.forEach(field => {
-                        if (!field.value.trim()) {
-                            field.classList.add('invalid');
-                            isValid = false;
-                        } else {
-                            field.classList.remove('invalid');
-                        }
-                    });
-                    // Valida checkboxes de termos
-                    const terms = form.querySelectorAll('.terms [type="checkbox"]');
-                    terms.forEach(term => {
-                        if (!term.checked) isValid = false;
-                    });
-                    return isValid;
-                }
+            function validateForm() {
+                let isValid = true;
+                const required = form.querySelectorAll('[required]');
+                
+                required.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.classList.add('invalid');
+                        isValid = false;
+                    } else {
+                        field.classList.remove('invalid');
+                    }
+                });
+                // Valida checkboxes de termos
+                const terms = form.querySelectorAll('.terms [type="checkbox"]');
+                terms.forEach(term => {
+                    if (!term.checked) isValid = false;
+                });
+                return isValid;
+            }
         });
     });

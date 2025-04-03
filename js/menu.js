@@ -18,12 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const city = localStorage.getItem('city');
             const state = localStorage.getItem('state');
             
-            // Recuperar trilhas como string
-            const trilhas = localStorage.getItem('trilhas') || 'Nenhuma trilha selecionada';
+            // Recuperar trilhas escolhidas
+            const chosenTrilhas = JSON.parse(localStorage.getItem('chosenTrilhas')) || [];
+            const chosenTrilhasText = chosenTrilhas.length > 0 ? chosenTrilhas.join(', ') : 'Nenhuma trilha selecionada';
 
-            // Recuperar as imagens em base64
-            const identityBase64 = localStorage.getItem('identity');
-            const residenceBase64 = localStorage.getItem('residenceProof');
+            // Recuperar os PDFs em JSON
+            const pdfsData = JSON.parse(localStorage.getItem('pdfs'));
+            const identityPDF = pdfsData ? pdfsData.identity : '';
+            const residencePDF = pdfsData ? pdfsData.residence : '';
 
             // Verificar se os dados estão salvos
             if (!name || !birthdate || !cpf || !gender || !email || !telephone || !cep || !street || !number || !city || !state) {
@@ -40,62 +42,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <title>Comprovante de Inscrição</title>
                     <style>
-                    body {
-                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                        line-height: 1.6;
-                        color: #333;
-                        max-width: 800px;
-                        margin: 0 auto;
-                        padding: 30px;
-                        background-color: #f9f9f9;
-                    }
-                    .container {
-                        background-color: white;
-                        padding: 30px;
-                        border-radius: 8px;
-                        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-                    }
-                    h1 {
-                        text-align: center;
-                        color: #2c3e50;
-                        margin-bottom: 30px;
-                        padding-bottom: 15px;
-                        border-bottom: 2px solid #3498db;
-                    }
-                    p {
-                        margin: 12px 0;
-                        padding: 8px 0;
-                        border-bottom: 1px solid #eee;
-                    }
-                    strong {
-                        color: #2c3e50;
-                        display: inline-block;
-                        width: 200px;
-                    }
-                    a {
-                        color: #3498db;
-                        text-decoration: none;
-                        font-weight: bold;
-                    }
-                    a:hover {
-                        text-decoration: underline;
-                    }
-                    .footer {
-                        margin-top: 30px;
-                        text-align: center;
-                        font-size: 12px;
-                        color: #7f8c8d;
-                    }
-                    @media print {
-                        body {
-                            background-color: white;
-                            padding: 0;
-                        }
-                        .container {
-                            box-shadow: none;
-                            padding: 0;
-                        }
-                    }
+                        body { font-family: Arial, sans-serif; }
+                        h1 { text-align: center; }
+                        p { margin: 10px 0; }
                     </style>
                 </head>
                 <body>
@@ -106,14 +55,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p><strong>Sexo:</strong> ${gender}</p>
                     <p><strong>E-mail:</strong> ${email}</p>
                     <p><strong>Telefone:</strong> ${telephone}</p>
-                    <p><strong>Documento de Identidade:</strong> <a href="${identityBase64}" download="documento_identidade.png">Baixar Documento</a></p>
+                    <p><strong>Documento de Identidade:</strong></p>
+                    <a href="${identityPDF}" target="_blank">Visualizar Documento de Identidade</a>
                     <p><strong>CEP:</strong> ${cep}</p>
                     <p><strong>Rua:</strong> ${street}</p>
                     <p><strong>Número:</strong> ${number}</p>
                     <p><strong>Cidade:</strong> ${city}</p>
                     <p><strong>Estado:</strong> ${state}</p>
-                    <p><strong>Trilhas de Aprendizagem:</strong> ${trilhas}</p>
-                    <p><strong>Comprovante de Residência:</strong> <a href="${residenceBase64}" download="comprovante_residencia.png">Baixar Comprovante</a></p>
+                    <p><strong>Trilhas de Aprendizagem:</strong> ${chosenTrilhasText}</p>
+                    <p><strong>Comprovante de Residência:</strong></p>
+                    <a href="${residencePDF}" target="_blank">Visualizar Comprovante de Residência</a>
                 </body>
                 </html>
             `;
@@ -125,13 +76,17 @@ document.addEventListener('DOMContentLoaded', function() {
             // Criar um link para download do comprovante
             const link = document.createElement('a');
             link.href = url;
-            link.download = 'comprovante_inscricao.html';
+            link.download = 'comprovante_inscricao.html'; // Nome do arquivo a ser baixado
             document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            link.click(); // Simula o clique no link para iniciar o download
+            document.body.removeChild(link); // Remove o link do DOM
             URL.revokeObjectURL(url); // Liberar o objeto URL
         });
     } else {
         console.error('Botão de gerar comprovante não encontrado.');
     }
+});
+document.getElementById('editButton').addEventListener('click', function() {
+    localStorage.clear();
+    alert('Dados limpos com sucesso!');
 });
