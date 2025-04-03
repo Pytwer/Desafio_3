@@ -406,7 +406,7 @@ input[type="file"] {
     }
     .file-upload {
         width: 100%;
-        max-width: 600px; 
+        max-width: 300px; 
         margin-left: auto;
         margin-right: auto;
         padding: 15px;
