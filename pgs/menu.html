@@ -1,66 +1,68 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Menu</title>
-        <link rel="stylesheet" href="/css/menu.css">
-        <script src="/js/pdf.js" defer></script>
-        <script src="/js/form.js"></script>
-        <script src="/js/menu.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-    </head>
-    <body>
-        <div class="container">
-            <div class="flex flex-1">
-                    <div class="sidebar">
-                        <div>
-                            <div class="logo">
-                                <img src="/img/logo.png" alt="Logo do Projeto">
-                            </div>
-                            <div class="user-info">
-                                <img alt="User avatar" src="/img/icon.png"/>
-                                <h3>000.000.000-0</h3>       
-                            </div>
-                        <div class="menu-title">
-                            MENU
-                        </div>
-                        <ul>
-                            <li>
-                                <i class="fas fa-key"></i>
-                                <a href="#">
-                                    Altere a Senha
-                                </a>
-                            </li>
-                            <li>
-                                <i class="fas fa-sign-out-alt"></i>
-                                <a id="logoutLink" href="/index.html">
-                                    Sair
-                                </a>
-                            </li>
-                        </ul>
-                        </div>
-                    </div>
-            </div>
-            <div class="main-content">
-                    <div class="card">
-                        <div class="card-title">
-                            <i class="fas fa-paper-plane"></i>
-                            <span>
-                                Inscrição
-                            </span>
-                        </div>
-                        <div class="buttons">
-                            <a href="/pgs/inscrição.html" class="btn" id="editButton">
-                                <button id="editButton">
-                                    <span>Editar</span>
-                                </button>
-                            </a>
-                            <button id="gerarComprovante">Gerar Comprovante</button>                     
-                        </div>
-                    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/js/pdf.js" defer></script>
+    <script src="/js/form.js"></script>
+    <script src="/js/menu.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="overlay"></div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <div>
+                <div class="logo">
+                    <img src="/img/logo.png" alt="Logo do Projeto">
+                </div>
+                <div class="user-info">
+                    <img alt="User avatar" src="/img/icon.png"/>
+                    <h3>000.000.000-0</h3>       
+                </div>
+                <div class="menu-title">
+                    MENU
+                </div>
+                <ul>
+                    <li>
+                        <i class="fas fa-key"></i>
+                        <a href="#">
+                            Altere a Senha
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fas fa-sign-out-alt"></i>
+                        <a id="logoutLink" href="/index.html">
+                            Sair
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </body>
-    </html>
+        
+        <div class="main-content">
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Inscrição</span>
+                </div>
+                <div class="buttons">
+                    <a href="/pgs/inscrição.html" class="btn" id="editButton">
+                        <button>
+                            <span>Editar</span>
+                        </button>
+                    </a>
+                    <button id="gerarComprovante">Gerar Comprovante</button>                     
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

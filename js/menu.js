@@ -90,3 +90,37 @@ document.getElementById('editButton').addEventListener('click', function() {
     localStorage.clear();
     alert('Dados limpos com sucesso!');
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.overlay');
+    
+    // Verifica se está em mobile
+    function checkMobile() {
+        if (window.innerWidth <= 992) {
+            menuToggle.style.display = 'block';
+        } else {
+            menuToggle.style.display = 'none';
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+    }
+    
+    // Verifica no carregamento
+    checkMobile();
+    
+    // Verifica no redimensionamento da tela
+    window.addEventListener('resize', checkMobile);
+    
+    // Evento de clique no botão do menu
+    menuToggle.addEventListener('click', function() {
+        sidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
+    });
+    
+    // Fechar menu ao clicar no overlay
+    overlay.addEventListener('click', function() {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    });
+});
