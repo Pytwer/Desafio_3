@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>Formulário de Inscrição</title>
     <title>Formulário</title>
     <link rel="stylesheet" href="/css/form.css">
-    <script src="/js/form.js" defer></script>
-    <script src="/js/app.js" defer></script>
-    <script src="/js/auth.js" defer></script>
-    <script src="/js/db.js" defer></script>
-
+    <script src="/js/form.js" type="module"></script>
+    <script src=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
   
@@ -40,7 +38,7 @@
 
                         <div class="row">
                             <div>
-                                <label for="birthdate" >Data de nascimento:</label>
+                                <label for="birthdate"  >Data de nascimento:</label>
                                 <input id="date" type="date"/>
                             </div>
                             <div>
@@ -117,16 +115,16 @@
                             <div> 
                                 <div class="file-upload">
                                     <img id="residence-image" src="/img/upload.png" alt="Upload Comprovante de Residência" onclick="document.getElementById('residence-proof').click()">
-                                    <input type="file" id="residence-proof" name="residence-proof" required style="display: none;">
+                                    <input type="file" id="residence-proof" accept="image/*" name="residence-proof" required style="display: none;">
                                 </div>    
                             </div>
                         </div>
 
                         <h2>Trilhas de aprendizagem</h2>
 
-                        <div class="trilhas">
+                        <<div class="trilhas">
                             <label class="custom-checkbox">
-                                <input type="checkbox">
+                                <input type="checkbox" id="trilha_frontend">
                                 <span class="checkmark"></span>
                                 <div class="content">
                                     <img src="/img/front.png">
@@ -134,18 +132,15 @@
                                 </div>
                             </label>
                             <label class="custom-checkbox">
-                                <input type="checkbox">
+                                <input type="checkbox" id="trilha_backend">
                                 <span class="checkmark"></span>
                                 <div class="content">
                                     <img src="/img/backend.png">
                                     <span class="texto">Programação Back-end</span>
                                 </div>
-                            </label>
-                                <!-- Repita para as outras trilhas -->
-                            
-                        
+                            </label>                            
                             <label class="custom-checkbox">
-                                <input type="checkbox">
+                                <input type="checkbox" id="trilha_jogos">
                                 <span class="checkmark"></span>
                                 <div class="content">
                                     <img src="/img/games.png">
@@ -153,7 +148,7 @@
                                 </div>
                             </label>
                             <label class="custom-checkbox">
-                                <input type="checkbox">
+                                <input type="checkbox" id="trilha_design">
                                 <span class="checkmark"></span>
                                 <div class="content">
                                     <img src="/img/design.png">
@@ -161,7 +156,7 @@
                                 </div>
                             </label>
                             <label class="custom-checkbox">
-                                <input type="checkbox">
+                                <input type="checkbox" id="trilha_dados">
                                 <span class="checkmark"></span>
                                 <div class="content">
                                     <img src="/img/data.png">
