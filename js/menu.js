@@ -88,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 document.getElementById('editButton').addEventListener('click', function() {
     localStorage.clear();
-    alert('Dados limpos com sucesso!');
 });
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menuToggle');
