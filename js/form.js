@@ -29,7 +29,36 @@
             }
         });
     }
+    document.getElementById('cpf').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        e.target.value = value;
+    });
 
+    document.querySelector('input[attrname="telephone1"]').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+        value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+        e.target.value = value;
+    });
+
+    document.getElementById('cep').addEventListener('blur', function() {
+        const cep = this.value.replace(/\D/g, '');
+        if (cep.length === 8) {
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.erro) {
+                        document.getElementById('street').value = data.logradouro || '';
+                        document.getElementById('city').value = data.localidade || '';
+                        document.getElementById('state').value = data.uf || '';
+                    }
+                })
+                .catch(error => console.error('Erro ao buscar CEP:', error));
+        }
+    });
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('inscricaoForm');
         const loadingOverlay = document.getElementById('loadingOverlay');
@@ -177,5 +206,24 @@
             } else {
                 reader.onload(); // Chama a função se não houver arquivo
             }
+                function validateForm() {
+                    let isValid = true;
+                    const required = form.querySelectorAll('[required]');
+                    
+                    required.forEach(field => {
+                        if (!field.value.trim()) {
+                            field.classList.add('invalid');
+                            isValid = false;
+                        } else {
+                            field.classList.remove('invalid');
+                        }
+                    });
+                    // Valida checkboxes de termos
+                    const terms = form.querySelectorAll('.terms [type="checkbox"]');
+                    terms.forEach(term => {
+                        if (!term.checked) isValid = false;
+                    });
+                    return isValid;
+                }
         });
     });
