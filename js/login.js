@@ -210,12 +210,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Máscara para CPF (apenas números)
     [loginCpf, registerCpf].forEach(input => {
         input.addEventListener('input', function() {
-            this.value = this.value.replace(/\D/g, '');
-            
-            // Limitar a 11 caracteres
-            if (this.value.length > 11) {
-                this.value = this.value.slice(0, 11);
-            }
+            let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                e.target.value = value;
         });
     });
 });
