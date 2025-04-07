@@ -24,8 +24,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Esconder o link de cadastro inicialmente
     registerLinkDiv.style.display = 'none';
 
+    // Função para formatar CPF (XXX.XXX.XXX-XX)
+    function formatCpf(cpf) {
+        cpf = cpf.replace(/\D/g, '');
+        cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+        cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+        cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        return cpf;
+    }
+
+    // Função para remover formatação do CPF (apenas números)
+    function unformatCpf(cpf) {
+        return cpf.replace(/\D/g, '');
+    }
+
     // Função para validar CPF (11 dígitos numéricos)
     function validateCpf(cpf) {
+        cpf = unformatCpf(cpf);
         return /^\d{11}$/.test(cpf);
     }
     
@@ -62,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loginForm.style.display = 'none';
         registerForm.style.display = 'block';
         loginMessage.style.display = 'none';
-        registerLinkDiv.style.display = 'none'; // Esconde ao mudar para registro
+        registerLinkDiv.style.display = 'none';
     });
     
     showLoginForm.addEventListener('click', function(e) {
@@ -70,19 +85,31 @@ document.addEventListener('DOMContentLoaded', function() {
         registerForm.style.display = 'none';
         loginForm.style.display = 'block';
         registerMessage.style.display = 'none';
-        registerLinkDiv.style.display = 'none'; // Esconde ao voltar para login
+        registerLinkDiv.style.display = 'none';
     });
     
-    // Verificar CPF digitado no login para mostrar/ocultar link de cadastro
-    loginCpf.addEventListener('input', function() {
-        const cpf = this.value.trim();
+    // Máscara de formatação para CPF no login
+    loginCpf.addEventListener('input', function(e) {
+        let value = e.target.value;
+        const originalLength = value.length;
         
-        if (validateCpf(cpf)) {
-            const userExists = users.some(u => u.cpf === cpf);
+        // Aplica formatação
+        value = formatCpf(value);
+        e.target.value = value;
+        
+        // Verifica se o CPF está completo para mostrar/ocultar link de cadastro
+        if (validateCpf(value)) {
+            const cpfDigits = unformatCpf(value);
+            const userExists = users.some(u => u.cpf === cpfDigits);
             registerLinkDiv.style.display = userExists ? 'none' : 'block';
         } else {
             registerLinkDiv.style.display = 'none';
         }
+    });
+    
+    // Máscara de formatação para CPF no registro
+    registerCpf.addEventListener('input', function(e) {
+        e.target.value = formatCpf(e.target.value);
     });
     
     // Lembrar credenciais
@@ -91,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Verificar se há credenciais salvas
     if (localStorage.getItem('rememberedUser')) {
         const rememberedUser = JSON.parse(localStorage.getItem('rememberedUser'));
-        loginCpf.value = rememberedUser.cpf;
+        loginCpf.value = formatCpf(rememberedUser.cpf);
         loginPassword.value = rememberedUser.password;
         rememberMe.checked = true;
     }
@@ -100,11 +127,11 @@ document.addEventListener('DOMContentLoaded', function() {
     loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const cpf = loginCpf.value.trim();
+        const cpf = unformatCpf(loginCpf.value);
         const password = loginPassword.value.trim();
         
         // Validar CPF
-        if (!validateCpf(cpf)) {
+        if (!validateCpf(loginCpf.value)) {
             showMessage(loginMessage, 'CPF deve conter exatamente 11 dígitos numéricos.');
             registerLinkDiv.style.display = 'none';
             return;
@@ -126,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!user) {
                 hideLoading();
                 showMessage(loginMessage, 'Usuário não encontrado.');
-                registerLinkDiv.style.display = 'block'; // Mostra link de cadastro
+                registerLinkDiv.style.display = 'block';
                 return;
             }
             
@@ -159,11 +186,11 @@ document.addEventListener('DOMContentLoaded', function() {
     registerForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const cpf = registerCpf.value.trim();
+        const cpf = unformatCpf(registerCpf.value);
         const password = registerPassword.value.trim();
         
         // Validar CPF
-        if (!validateCpf(cpf)) {
+        if (!validateCpf(registerCpf.value)) {
             showMessage(registerMessage, 'CPF deve conter exatamente 11 dígitos numéricos.');
             return;
         }
@@ -198,23 +225,12 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 registerForm.style.display = 'none';
                 loginForm.style.display = 'block';
-                loginCpf.value = cpf;
+                loginCpf.value = formatCpf(cpf);
                 loginPassword.value = password;
                 registerMessage.style.display = 'none';
                 registerLinkDiv.style.display = 'none';
             }, 1000);
             
         }, 1500);
-    });
-    
-    // Máscara para CPF (apenas números)
-    [loginCpf, registerCpf].forEach(input => {
-        input.addEventListener('input', function() {
-            let value = e.target.value.replace(/\D/g, '');
-                value = value.replace(/(\d{3})(\d)/, '$1.$2');
-                value = value.replace(/(\d{3})(\d)/, '$1.$2');
-                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-                e.target.value = value;
-        });
     });
 });
