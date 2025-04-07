@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginMessage = document.getElementById('loginMessage');
     const showRegisterForm = document.getElementById('showRegisterForm');
     const registerLinkDiv = document.querySelector('.register-link');
-    
+
     // Elementos do formulário de registro
     const registerForm = document.getElementById('registerForm');
     const registerCpf = document.getElementById('registerCpf');
@@ -173,13 +173,14 @@ document.addEventListener('DOMContentLoaded', function() {
             
             hideLoading();
             showMessage(loginMessage, 'Login realizado com sucesso!', false);
+            sessionStorage.setItem('loggedUserCpf', formatCpf(cpf));
             
             // Redirecionar para a página principal (simulado)
             setTimeout(() => {
                 window.location.href = '/pgs/menu.html';
             }, 1000);
             
-        }, 1500);
+        }, 1000);
     });
     
     // Evento de submit do formulário de registro
@@ -231,6 +232,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 registerLinkDiv.style.display = 'none';
             }, 1000);
             
-        }, 1500);
+        }, 1000);
     });
 });
