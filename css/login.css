@@ -24,9 +24,6 @@ header {
     width: auto;
     transition: transform var(--transition-speed);
 }
-.logo:hover img {
-    transform: scale(1.05);
-}
 
 .login-container {
     position: relative;
@@ -173,51 +170,12 @@ button:disabled {
     margin-top: 15px;
 }
 .lembrar {
-    display: flex;
+    display: none;
     align-items: center;
     gap: 8px;
     margin: 15px 0;
 }
 
-.lembrar input[type="checkbox"] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 5px;
-    height: 5px;
-    border: 2px solid #4CAF50;
-    border-radius: 15px;
-    outline: none;
-    cursor: pointer;
-    position: relative;
-    transition: all 0.2s;
-}
-
-.lembrar input[type="checkbox"]:checked {
-    background-color: #4CAF50;
-}
-
-.lembrar input[type="checkbox"]:checked::after {
-    content: "✓";
-    position: absolute;
-    color: white;
-    font-size: 14px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.lembrar label {
-    margin: 0;
-    color: #555;
-    font-size: 14px;
-    cursor: pointer;
-    user-select: none;
-    transition: color 0.2s;
-}
-
-.lembrar:hover label {
-    color: #333;
-}
 
 @media (max-width: 768px) {
     .desktop-video {
