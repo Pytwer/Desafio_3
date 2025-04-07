@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -6,12 +5,12 @@
     <title>Login</title>
     <link rel="stylesheet" href="/css/login.css">
     <script src="/js/login.js" defer></script>
-
+    
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="img/logo.png" alt="Logo do Projeto">
+            <img src="/img/logo.png" alt="Logo do Projeto">
         </div>
     </header>
     <div class="login-container" id="formContainer">
@@ -20,7 +19,7 @@
                 <source src="/mp4/bannerlogin.mp4" type="video/mp4">
                 Seu navegador não suporta vídeos HTML5.
             </video>
-                <video autoplay muted loop class="mobile-video">
+            <video autoplay muted loop class="mobile-video">
                 <source src="/mp4/loginmobile.mp4" type="video/mp4">
                 Seu navegador não suporta vídeos HTML5.
             </video>
@@ -31,12 +30,16 @@
             <div id="loginMessage" class="message" style="display: none;"></div>
             <input type="text" id="loginCpf" placeholder="CPF" required>
             <input type="password" id="loginPassword" placeholder="Senha" required>
-            <button type="submit" id="loginButton">Entrar</button>
-            <div class="register-link">
-                Não tem uma conta? <a href="#" id="showRegisterForm">Cadastrar</a>
+            <div class="lembrar">
+                <input type="checkbox" id="rememberMe">
+                <label for="rememberMe">Lembrar minhas credenciais</label>
             </div>
+            <div class="register-link">
+                Não tem uma conta? <a href="/pgs/inscrição.html" id="showRegisterForm">Cadastrar</a>
+            </div>
+            <button type="submit" id="loginButton">Entrar</button>
+            
         </form>
-
         <!-- Formulário de Cadastro (inicialmente oculto) -->
         <form id="registerForm" style="display: none;">
             <h2>Cadastro</h2>
@@ -45,10 +48,16 @@
             <input type="password" id="registerPassword" placeholder="Senha" required>
             <button type="submit" id="registerButton">Cadastrar</button>
             <div class="login-link">
-                Já tem uma conta? <a href="#" id="showLoginForm">Login</a>
+                Já tem uma conta? <a href="" id="showLoginForm">Login</a>
             </div>
         </form>
     </div>
-    
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <img src="https://media.tenor.com/g-v6qGzl12YAAAAj/grind-grinding.gif" 
+                 alt="Carregando" class="loading-image">
+            <p class="loading-text"></p>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,133 +1,243 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-* {
-    font-family: 'Poppins', sans-serif;
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    height: 100vh;
+    overflow: hidden;
 }
-body {
-    font-family: Arial, sans-serif;
+
+header {
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    color: #333;
-    overflow-y: hidden;
-}
-.video-background {
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1.5rem 5%;
     position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    background-color: transparent;
+}
+.logo img {
+    padding-left: 900px;
+    height: 2.5rem;
+    width: auto;
+    transition: transform var(--transition-speed);
+}
+.logo:hover img {
+    transform: scale(1.05);
+}
+
+.login-container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-background {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
     overflow: hidden;
+    z-index: -1;
 }
+
 .video-background video {
-    width: 100%;
-    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
     object-fit: cover;
 }
-.desktop-video {
-    display: block;
-}
+
 .mobile-video {
     display: none;
 }
-.login-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
-}
-#loginForm, #registerForm {
+
+form {
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 30px;
+    padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
     text-align: center;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
 }
-#loginForm h2, #registerForm h2 {
+
+form h2 {
     margin-bottom: 20px;
-    font-size: 24px;
-    color: #007bff;
+    color: #333;
 }
-#loginForm input, #registerForm input {
+
+input {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
-    transition: border-color 0.3s ease;
+    box-sizing: border-box;
 }
-#loginForm input:focus, #registerForm input:focus {
-    border-color: #007bff;
+
+input:focus {
     outline: none;
+    border-color: #4CAF50;
 }
-#loginForm button, #registerForm button {
+
+button {
     width: 100%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: #1900ff;
     color: white;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    margin-top: 10px;
+    transition: background-color 0.3s;
 }
-#loginForm button:hover, #registerForm button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
+
+button:hover {
+    background-color: #4c00ff60;
 }
-.register-link, .login-link {
-    margin-top: 15px;
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.register-link {
+    margin: 15px 0;
     font-size: 14px;
+    display: none; /* Inicia oculto por padrão */
+    animation: fadeIn 0.5s ease-in-out;
 }
-.register-link a, .login-link a {
-    color: #007bff;
+
+.register-link a {
+    color: #ff0000;
     text-decoration: none;
-    transition: color 0.3s ease;
 }
-.register-link a:hover, .login-link a:hover {
-    color: #0056b3;
+
+.register-link a:hover {
     text-decoration: underline;
 }
+
+.message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    display: none;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.loading-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loading-content {
+    text-align: center;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 80%;
+}
+
+.loading-image {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+.loading-text {
+    font-size: 18px;
+    color: #333;
+    margin-top: 15px;
+}
+.lembrar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.lembrar input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 5px;
+    height: 5px;
+    border: 2px solid #4CAF50;
+    border-radius: 15px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.lembrar input[type="checkbox"]:checked {
+    background-color: #4CAF50;
+}
+
+.lembrar input[type="checkbox"]:checked::after {
+    content: "✓";
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.lembrar label {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s;
+}
+
+.lembrar:hover label {
+    color: #333;
+}
+
 @media (max-width: 768px) {
     .desktop-video {
         display: none;
     }
+    
     .mobile-video {
         display: block;
     }
-    #loginForm, #registerForm {
-        padding: 25px;
-        max-width: 350px;
-        background-color: rgba(255, 255, 255, 0.95);
+    
+    form {
+        padding: 30px 20px;
+        margin: 0 20px;
     }
-    #loginForm h2, #registerForm h2 {
-        font-size: 22px;
+    
+    header {
+        padding: 10px 0;
     }
-    #loginForm input, #registerForm input {
-        padding: 10px;
-        font-size: 15px;
-    }
-}
-@media (max-width: 480px) {
-    #loginForm, #registerForm {
-        padding: 20px;
-        max-width: 300px;
-    }
-    #loginForm h2, #registerForm h2 {
-        font-size: 20px;
-    }
-    #loginForm input, #registerForm input {
-        font-size: 14px;
+    
+    .logo img {
+        height: 50px;
     }
 }

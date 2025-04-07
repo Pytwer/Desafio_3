@@ -63,181 +63,93 @@
         const form = document.getElementById('inscricaoForm');
         const loadingOverlay = document.getElementById('loadingOverlay');
         
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            if (validateForm()) {
-                // Mostra o overlay de carregamento
-                loadingOverlay.classList.add('active');
-                // Simula o envio dos dados (substitua por AJAX real se necessário)
-                setTimeout(function() {
-                    // Mostra mensagem de conclusão antes de redirecionar
-                    document.querySelector('.loading-text').textContent = 'Inscrição concluída! Redirecionando...';
-                    document.querySelector('.loading-image').style.animation = 'none';   
-                    // Redireciona após breve pausa
-                    setTimeout(function() {
-                        window.location.href = '/pgs/menu.html';
-                    }, 3000);
-                }, 3000); // Tempo simulado de processamento
+        // Verifica se os elementos existem
+        if (!form || !loadingOverlay) {
+            console.error('Elementos do formulário não encontrados!');
+            return;
+        }
+    
+        // Adiciona máscaras aos campos
+        function aplicarMascaras() {
+            // Máscara para telefone
+            const telefoneInput = document.querySelector('input[attrname="telephone1"]');
+            if (telefoneInput) {
+                telefoneInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+                    value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+                    e.target.value = value;
+                });
             }
-        });
-        function validateForm() {
-            let isValid = true;
-            // Valida campos de texto obrigatórios
-            const requiredFields = form.querySelectorAll('[required]:not([type="file"])');
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    field.classList.add('invalid');
-                    isValid = false;
+    
+            // Máscara para CPF
+            const cpfInput = document.getElementById('cpf');
+            if (cpfInput) {
+                cpfInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                    e.target.value = value;
+                });
+            }
+    
+            // Máscara para CEP
+            const cepInput = document.getElementById('cep');
+            if (cepInput) {
+                cepInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+                    e.target.value = value;
+                });
+            }
+        }
+    
+        aplicarMascaras();
+    
+        // Função principal de validação
+        function validarFormulario() {
+            let valido = true;
+            
+            // Validação básica de campos obrigatórios
+            const camposObrigatorios = form.querySelectorAll('[required]');
+            camposObrigatorios.forEach(campo => {
+                if (!campo.value.trim()) {
+                    campo.classList.add('campo-invalido');
+                    valido = false;
+                } else {
+                    campo.classList.remove('campo-invalido');
                 }
             });
-            // Valida arquivos
-            if (!validateFile('identity') || !validateFile('residence-proof')) {
-                isValid = false;
-            }
-            return isValid;
-        }
-        function validateFile(inputId) {
-            const fileInput = document.getElementById(inputId);
-            const uploadContainer = fileInput.closest('.file-upload');
-            
-            if (!fileInput.files || fileInput.files.length === 0) {
-                uploadContainer.classList.add('invalid-file');
-                return false;
-            } else {
-                uploadContainer.classList.remove('invalid-file');
+    
+            // Validação específica para arquivos
+            const validarArquivo = (id) => {
+                const arquivo = document.getElementById(id);
+                if (arquivo && (!arquivo.files || arquivo.files.length === 0)) {
+                    arquivo.closest('.file-upload').classList.add('campo-invalido');
+                    return false;
+                }
+                arquivo.closest('.file-upload').classList.remove('campo-invalido');
                 return true;
-            }
-        }
-        function validateForm() {
-            let isValid = true;
-            const required = form.querySelectorAll('[required]');
-            
-            required.forEach(field => {
-                if (!field.value.trim()) {
-                    field.classList.add('invalid');
-                    isValid = false;
-                } else {
-                    field.classList.remove('invalid');
-                }
-            });
-            // Valida checkboxes de termos
-            const terms = form.querySelectorAll('.terms [type="checkbox"]');
-            terms.forEach(term => {
-                if (!term.checked) isValid = false;
-            });
-            return isValid;
-        }
-    });
-    const date = document.getElementById('date');
-    const hoje = new Date().toISOString().split('T')[0];
-    date.setAttribute('max', hoje);
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('inscricaoForm');
-    
-        // Capturar dados do formulário
-        form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Impede o envio padrão do formulário
-    
-            // Coletar dados do formulário
-            const name = document.getElementById('name').value;
-            const birthdate = document.getElementById('date').value;
-            const cpf = document.getElementById('cpf').value;
-            const gender = document.getElementById('gender').value;
-            const email = document.getElementById('email').value;
-            const telephone = document.getElementById('telephone').value;
-            const identityFile = document.getElementById('identity').files[0]; // PDF do documento de identidade
-            const residenceFile = document.getElementById('residence-proof').files[0]; // PDF do comprovante de residência
-            const cep = document.getElementById('cep').value;
-            const street = document.getElementById('street').value;
-            const number = document.getElementById('number').value;
-            const city = document.getElementById('city').value;
-            const state = document.getElementById('state').value;
-    
-            // Variável para armazenar as trilhas escolhidas
-            let chosenTrilhas = [];
-    
-            // Verificar quais trilhas foram escolhidas
-            if (document.getElementById('trilha_0').checked) {
-                chosenTrilhas.push('Programação Front-end');
-            }
-            if (document.getElementById('trilha_1').checked) {
-                chosenTrilhas.push('Programação Back-end');
-            }
-            if (document.getElementById('trilha_2').checked) {
-                chosenTrilhas.push('Programação em Jogos');
-            }
-            if (document.getElementById('trilha_3').checked) {
-                chosenTrilhas.push('Design e Experiência');
-            }
-            if (document.getElementById('trilha_4').checked) {
-                chosenTrilhas.push('Ciência de Dados');
-            }
-    
-            // Armazenar trilhas em localStorage
-            localStorage.setItem('chosenTrilhas', JSON.stringify(chosenTrilhas));
-    
-            // Usar FileReader para ler os arquivos PDF
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const identityPDF = e.target.result; // URL do PDF do documento de identidade
-                const residenceReader = new FileReader();
-                residenceReader.onload = function(e) {
-                    const residencePDF = e.target.result; // URL do PDF do comprovante de residência
-    
-                    // Criar objeto JSON para armazenar os PDFs
-                    const pdfsData = {
-                        identity: identityPDF,
-                        residence: residencePDF
-                    };
-    
-                    // Armazenar dados no localStorage
-                    localStorage.setItem('name', name);
-                    localStorage.setItem('birthdate', birthdate);
-                    localStorage.setItem('cpf', cpf);
-                    localStorage.setItem('gender', gender);
-                    localStorage.setItem('email', email);
-                    localStorage.setItem('telephone', telephone);
-                    localStorage.setItem('pdfs', JSON.stringify(pdfsData)); // Armazenar como JSON
-                    localStorage.setItem('cep', cep);
-                    localStorage.setItem('street', street);
-                    localStorage.setItem('number', number);
-                    localStorage.setItem('city', city);
-                    localStorage.setItem('state', state);
-    
-                    alert('Dados salvos com sucesso!');
-                };
-    
-                if (residenceFile) {
-                    residenceReader.readAsDataURL(residenceFile); // Lê o arquivo PDF do comprovante de residência
-                } else {
-                    residenceReader.onload(); // Chama a função se não houver arquivo
-                }
             };
     
-            if (identityFile) {
-                reader.readAsDataURL(identityFile); // Lê o arquivo PDF do documento de identidade
-            } else {
-                reader.onload(); // Chama a função se não houver arquivo
+            if (!validarArquivo('identity') || !validarArquivo('residence-proof')) {
+                valido = false;
             }
-            function validateForm() {
-                let isValid = true;
-                const required = form.querySelectorAll('[required]');
-                
-                required.forEach(field => {
-                    if (!field.value.trim()) {
-                        field.classList.add('invalid');
-                        isValid = false;
-                    } else {
-                        field.classList.remove('invalid');
-                    }
-                });
-                // Valida checkboxes de termos
-                const terms = form.querySelectorAll('.terms [type="checkbox"]');
-                terms.forEach(term => {
-                    if (!term.checked) isValid = false;
-                });
-                return isValid;
-            }
-        });
+    
+            // Validação de termos
+            const termos = form.querySelectorAll('.terms [type="checkbox"]');
+            let termosAceitos = true;
+            termos.forEach(termo => {
+                if (!termo.checked) {
+                    termo.closest('.terms').classList.add('campo-invalido');
+                    termosAceitos = false;
+                } else {
+                    termo.closest('.terms').classList.remove('campo-invalido');
+                }
+            });
+    
+            return valido && termosAceitos;
+        }
+        
     });

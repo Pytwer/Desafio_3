@@ -1,105 +1,221 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const loginForm = document.getElementById("loginForm");
-    const registerForm = document.getElementById("registerForm");
-    const showRegisterForm = document.getElementById("showRegisterForm");
-    const showLoginForm = document.getElementById("showLoginForm");
-    const loginButton = document.getElementById("loginButton");
-    const registerButton = document.getElementById("registerButton");
-    const loginMessage = document.getElementById("loginMessage");
-    const registerMessage = document.getElementById("registerMessage");
-
-    // Armazenar dados dos usuários (persistirá enquanto a página não for recarregada)
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos do formulário de login
+    const loginForm = document.getElementById('loginForm');
+    const loginCpf = document.getElementById('loginCpf');
+    const loginPassword = document.getElementById('loginPassword');
+    const loginMessage = document.getElementById('loginMessage');
+    const showRegisterForm = document.getElementById('showRegisterForm');
+    const registerLinkDiv = document.querySelector('.register-link');
+    
+    // Elementos do formulário de registro
+    const registerForm = document.getElementById('registerForm');
+    const registerCpf = document.getElementById('registerCpf');
+    const registerPassword = document.getElementById('registerPassword');
+    const registerMessage = document.getElementById('registerMessage');
+    const showLoginForm = document.getElementById('showLoginForm');
+    
+    // Elementos do loading
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const loadingText = document.querySelector('.loading-text');
+    
+    // Armazenamento de usuários (simulado)
     let users = JSON.parse(localStorage.getItem('users')) || [];
+    
+    // Esconder o link de cadastro inicialmente
+    registerLinkDiv.style.display = 'none';
 
-    // Mostrar o formulário de cadastro
-    showRegisterForm.addEventListener("click", function(event) {
-        event.preventDefault();
-        loginForm.style.display = "none";
-        registerForm.style.display = "block";
-        registerMessage.style.display = "none";
-    });
-
-    // Mostrar o formulário de login
-    showLoginForm.addEventListener("click", function(event) {
-        event.preventDefault();
-        registerForm.style.display = "none";
-        loginForm.style.display = "block";
-        loginMessage.style.display = "none";
-    });
-
-    // Lidar com o envio do formulário de login
-    loginForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-        const cpf = document.getElementById("loginCpf").value.replace(/\D/g, '');
-        const password = document.getElementById("loginPassword").value;
-
-        // Verificar se existe um usuário com esses dados
-        const user = users.find(u => u.cpf === cpf && u.password === password);
+    // Função para validar CPF (11 dígitos numéricos)
+    function validateCpf(cpf) {
+        return /^\d{11}$/.test(cpf);
+    }
+    
+    // Função para validar senha (mínimo 6 caracteres)
+    function validatePassword(password) {
+        return password.length >= 6;
+    }
+    
+    // Função para mostrar mensagem de erro
+    function showMessage(element, message, isError = true) {
+        element.textContent = message;
+        element.style.display = 'block';
+        element.style.color = isError ? '#ff3333' : '#33cc33';
         
-       // No trecho onde o login é bem-sucedido
-        if (user) {
-            loginMessage.style.display = "none";
-            sessionStorage.setItem('loggedInUser', JSON.stringify(user));
-            
-            window.location.href = "/pgs/menu.html"; 
-        }
-        else {
-            loginMessage.textContent = "CPF ou senha incorretos.";
-            loginMessage.style.display = "block";
-        }
-    });
-
-    // Lidar com o envio do formulário de cadastro
-    registerForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-        const cpf = document.getElementById("registerCpf").value.replace(/\D/g, '');
-        const password = document.getElementById("registerPassword").value;
-
-        // Verificação se os campos estão vazios
-        if (!cpf || !password) {
-            registerMessage.textContent = "Por favor, preencha todos os campos.";
-            registerMessage.style.display = "block";
-            return;
-        }
-
-        // Validação do CPF
-        if (cpf.length !== 11) {
-            registerMessage.textContent = "CPF inválido. Deve conter 11 dígitos.";
-            registerMessage.style.display = "block";
-            return;
-        }
-
-        // Validação da Senha
-        if (password.length < 6 || password.length > 10) {
-            registerMessage.textContent = "A senha deve ter entre 6 e 10 dígitos.";
-            registerMessage.style.display = "block";
-            return;
-        }
-
-        // Verificar se o CPF já está cadastrado
-        if (users.some(u => u.cpf === cpf)) {
-            registerMessage.textContent = "Este CPF já está cadastrado.";
-            registerMessage.style.display = "block";
-            return;
-        }
-
-        // Adicionar novo usuário
-        users.push({ cpf, password });
-        localStorage.setItem('users', JSON.stringify(users));
-        
-        registerMessage.textContent = "Cadastro realizado com sucesso! Você pode fazer login agora.";
-        registerMessage.style.color = "green";
-        registerMessage.style.display = "block";
-
-        // Limpar formulário
-        document.getElementById("registerCpf").value = "";
-        document.getElementById("registerPassword").value = "";
-
-        // Voltar para o formulário de login após 2 segundos
         setTimeout(() => {
-            registerForm.style.display = "none";
-            loginForm.style.display = "block";
-            registerMessage.style.display = "none";
-        }, 2000);
+            element.style.display = 'none';
+        }, 5000);
+    }
+    
+    // Função para mostrar loading
+    function showLoading(message) {
+        loadingText.textContent = message;
+        loadingOverlay.style.display = 'flex';
+    }
+    
+    // Função para esconder loading
+    function hideLoading() {
+        loadingOverlay.style.display = 'none';
+    }
+    
+    // Alternar entre formulários de login e registro
+    showRegisterForm.addEventListener('click', function(e) {
+        e.preventDefault();
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+        loginMessage.style.display = 'none';
+        registerLinkDiv.style.display = 'none'; // Esconde ao mudar para registro
+    });
+    
+    showLoginForm.addEventListener('click', function(e) {
+        e.preventDefault();
+        registerForm.style.display = 'none';
+        loginForm.style.display = 'block';
+        registerMessage.style.display = 'none';
+        registerLinkDiv.style.display = 'none'; // Esconde ao voltar para login
+    });
+    
+    // Verificar CPF digitado no login para mostrar/ocultar link de cadastro
+    loginCpf.addEventListener('input', function() {
+        const cpf = this.value.trim();
+        
+        if (validateCpf(cpf)) {
+            const userExists = users.some(u => u.cpf === cpf);
+            registerLinkDiv.style.display = userExists ? 'none' : 'block';
+        } else {
+            registerLinkDiv.style.display = 'none';
+        }
+    });
+    
+    // Lembrar credenciais
+    const rememberMe = document.getElementById('rememberMe');
+    
+    // Verificar se há credenciais salvas
+    if (localStorage.getItem('rememberedUser')) {
+        const rememberedUser = JSON.parse(localStorage.getItem('rememberedUser'));
+        loginCpf.value = rememberedUser.cpf;
+        loginPassword.value = rememberedUser.password;
+        rememberMe.checked = true;
+    }
+    
+    // Evento de submit do formulário de login
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const cpf = loginCpf.value.trim();
+        const password = loginPassword.value.trim();
+        
+        // Validar CPF
+        if (!validateCpf(cpf)) {
+            showMessage(loginMessage, 'CPF deve conter exatamente 11 dígitos numéricos.');
+            registerLinkDiv.style.display = 'none';
+            return;
+        }
+        
+        // Validar senha
+        if (!validatePassword(password)) {
+            showMessage(loginMessage, 'Senha deve ter no mínimo 6 caracteres.');
+            return;
+        }
+        
+        showLoading('Validando credenciais...');
+        
+        // Simular delay de requisição
+        setTimeout(() => {
+            // Verificar se o usuário existe
+            const user = users.find(u => u.cpf === cpf);
+            
+            if (!user) {
+                hideLoading();
+                showMessage(loginMessage, 'Usuário não encontrado.');
+                registerLinkDiv.style.display = 'block'; // Mostra link de cadastro
+                return;
+            }
+            
+            // Verificar senha
+            if (user.password !== password) {
+                hideLoading();
+                showMessage(loginMessage, 'Senha incorreta. Tente novamente.');
+                return;
+            }
+            
+            // Lembrar credenciais se marcado
+            if (rememberMe.checked) {
+                localStorage.setItem('rememberedUser', JSON.stringify({ cpf, password }));
+            } else {
+                localStorage.removeItem('rememberedUser');
+            }
+            
+            hideLoading();
+            showMessage(loginMessage, 'Login realizado com sucesso!', false);
+            
+            // Redirecionar para a página principal (simulado)
+            setTimeout(() => {
+                window.location.href = '/pgs/menu.html';
+            }, 1000);
+            
+        }, 1500);
+    });
+    
+    // Evento de submit do formulário de registro
+    registerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const cpf = registerCpf.value.trim();
+        const password = registerPassword.value.trim();
+        
+        // Validar CPF
+        if (!validateCpf(cpf)) {
+            showMessage(registerMessage, 'CPF deve conter exatamente 11 dígitos numéricos.');
+            return;
+        }
+        
+        // Validar senha
+        if (!validatePassword(password)) {
+            showMessage(registerMessage, 'Senha deve ter no mínimo 6 caracteres.');
+            return;
+        }
+        
+        showLoading('Criando sua conta...');
+        
+        // Simular delay de requisição
+        setTimeout(() => {
+            // Verificar se o usuário já existe
+            const userExists = users.some(u => u.cpf === cpf);
+            
+            if (userExists) {
+                hideLoading();
+                showMessage(registerMessage, 'CPF já cadastrado. Faça login ou use outro CPF.');
+                return;
+            }
+            
+            // Adicionar novo usuário
+            users.push({ cpf, password });
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            hideLoading();
+            showMessage(registerMessage, 'Cadastro realizado com sucesso!', false);
+            
+            // Preencher automaticamente o formulário de login
+            setTimeout(() => {
+                registerForm.style.display = 'none';
+                loginForm.style.display = 'block';
+                loginCpf.value = cpf;
+                loginPassword.value = password;
+                registerMessage.style.display = 'none';
+                registerLinkDiv.style.display = 'none';
+            }, 1000);
+            
+        }, 1500);
+    });
+    
+    // Máscara para CPF (apenas números)
+    [loginCpf, registerCpf].forEach(input => {
+        input.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '');
+            
+            // Limitar a 11 caracteres
+            if (this.value.length > 11) {
+                this.value = this.value.slice(0, 11);
+            }
+        });
     });
 });
