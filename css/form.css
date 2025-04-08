@@ -391,7 +391,7 @@ input[type="file"] {
         display: block;
     }
     input, select, button {
-        padding: 15x 25px;
+        padding: 15x 15px;
         font-size: 15px;
         border-radius: 8px;
     }
