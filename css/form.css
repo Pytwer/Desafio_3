@@ -455,13 +455,14 @@ input[type="file"] {
     /* FORMULÁRIO (UM ABAIXO DO OUTRO) */
     form {
         gap: 20px;
+        width: 400px;
     }
 
-    /* CADA INPUT/CHECKBOX/SELECT EM LINHA INDIVIDUAL */
     .form-group, .trilhas, .terms, .file-upload, .botao-container {
         display: flex;
         flex-direction: column;
         width: 100%;
+        height: 100px;
     }
 
     /* INPUTS, SELECTS, BOTÕES */
