@@ -32,20 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Redireciona após o envio
                 window.location.href = '/pgs/menu.html';
-            }, 2000); // 2 segundos apenas para demonstração
-            
-            // Na implementação real, você faria algo como:
-            // enviarFormulario()
-            //   .then(() => {
-            //       loadingContainer.style.display = 'none';
-            //       window.location.href = '/pgs/menu.html';
-            //   })
-            //   .catch(error => {
-            //       loadingContainer.style.display = 'none';
-            //       console.error('Erro no envio:', error);
-            //       alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
-            //   });
-            
+            }, 2000);
         } else {
             console.log('Formulário inválido. Erros encontrados:');
             camposInvalidos.forEach(campo => console.log(campo.id || campo.name));
@@ -262,8 +249,8 @@ function validarDataNascimento(input) {
         idade--;
     }
     
-    if (idade < 12) {
-        mostrarErro(input, errorElement, 'Você deve ter pelo menos 12 anos');
+    if (idade < 16) {
+        mostrarErro(input, errorElement, 'Você deve ter pelo menos 16 anos');
         return false;
     }
     
