@@ -391,10 +391,10 @@ input[type="file"] {
         display: block;
     }
     input, select, button {
-        width: 345px;
-        padding: 10px ;
-        font-size: 15px;
-        border-radius: 8px;
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        border-radius: 6px;
     }
     .trilhas {
         grid-template-columns: 1fr;
