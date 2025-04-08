@@ -453,22 +453,18 @@ function validarTrilhas() {
         if (!document.getElementById('trilhas-error')) {
             trilhasContainer.parentNode.insertBefore(errorElement, trilhasContainer.nextSibling);
         }
-        
+
         errorElement.style.display = 'block';
         camposInvalidos.push(trilhasContainer);
         return false;
     }
-    
     errorElement.style.display = 'none';
     return true;
 }
-
 function validarTermos() {
     const termos = document.querySelectorAll('input[name="terms"]');
     const errorElement = document.getElementById('termos-error') || criarErrorElementGlobal('termos-error', 'Você deve aceitar os termos para continuar');
-    
     const todosAceitos = Array.from(termos).every(termo => termo.checked);
-    
     if (!todosAceitos) {
         const termosContainer = document.querySelector('.terms:last-of-type');
         if (!document.getElementById('termos-error')) {
@@ -478,24 +474,18 @@ function validarTermos() {
         camposInvalidos.push(termosContainer);
         return false;
     }
-    
     errorElement.style.display = 'none';
     return true;
 }
-
-// Funções auxiliares para manipulação de erros
 function criarOuObterErrorElement(input) {
     let errorElement = input.nextElementSibling;
-    
     if (!errorElement || !errorElement.classList.contains('error-message')) {
         errorElement = document.createElement('div');
         errorElement.className = 'error-message';
         input.parentNode.insertBefore(errorElement, input.nextSibling);
     }
-    
     return errorElement;
 }
-
 function criarErrorElementGlobal(id, mensagem) {
     const errorElement = document.createElement('div');
     errorElement.id = id;
