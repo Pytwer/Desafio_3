@@ -429,6 +429,8 @@ input[type="file"] {
         width: 6000vh;
         padding: 20px 15px;
         overflow-y: auto;
+        grid-template-columns: 1fr;
+
     }
 
     .form h1 {
