@@ -409,21 +409,24 @@ input[type="file"] {
 }
 
 @media (max-width: 767px) {
-    body {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        min-height: 100vh;
+    /* RESET PARA EVITAR CONFLITOS */
+    body, .container, .form-column, form {
         margin: 0;
         padding: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    body {
+        min-height: 100vh;
+        align-items: center;
+        padding: 20px 15px;
+        box-sizing: border-box;
     }
 
     .container {
-        width: 100%;
         max-width: 360px;
-        padding: 20px 15px;
-        display: flex;
-        flex-direction: column;
     }
 
     .image-column {
@@ -431,143 +434,93 @@ input[type="file"] {
     }
 
     .form-column {
-        width: 100%;
         padding: 0;
-        display: flex;
-        flex-direction: column;
     }
 
-    .form h1 {
+    /* TÍTULOS */
+    .form h1, .form h2, .subtitulo {
+        width: 100% !important;
+        margin: 0 0 15px 0;
         font-size: 22px;
-        margin-bottom: 20px;
         line-height: 1.3;
-        width: 100%;
+        padding: 10px;
+        overflow: hidden;
     }
 
     .form h2 {
-        width: 100%;
         font-size: 18px;
-        margin: 25px 0 15px 0;
     }
-    
-    .subtitulo {
-        width: 100%;
-    }
-    
+
+    /* FORMULÁRIO (UM ABAIXO DO OUTRO) */
     form {
-        display: flex;
-        flex-direction: column;
         gap: 20px;
-        width: 100%;
-        padding-bottom: 40px;
     }
 
-    .form-group {
+    /* CADA INPUT/CHECKBOX/SELECT EM LINHA INDIVIDUAL */
+    .form-group, .trilhas, .terms, .file-upload, .botao-container {
         display: flex;
         flex-direction: column;
         width: 100%;
     }
 
-    label {
-        font-size: 15px;
-        margin-bottom: 8px;
-        display: block;
-        width: 100%;
-    }
-
-    input,
-    select,
-    button,
-    .file-upload,
-    .custom-checkbox {
+    /* INPUTS, SELECTS, BOTÕES */
+    input, select, button, .file-upload, .custom-checkbox {
         width: 100% !important;
         max-width: 100% !important;
+        padding: 12px;
         font-size: 14px;
         border-radius: 6px;
         box-sizing: border-box;
+        margin-bottom: 0;
     }
 
-    input,
-    select,
-    button {
-        padding: 12px 15px;
-    }
-
-    .trilhas {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        width: 100%;
-    }
-
+    /* CHECKBOX PERSONALIZADO (TRILHAS) */
     .custom-checkbox {
         height: auto;
-        min-height: 130px;
         padding: 15px;
-        margin: 0;
+        margin: 0 0 15px 0 !important;
     }
 
-    .custom-checkbox img {
-        max-width: 35px;
-    }
-
-    .custom-checkbox .texto {
-        font-size: 14px;
-        white-space: normal;
-    }
-
+    /* UPLOAD DE ARQUIVO */
     .file-upload {
         padding: 15px;
-        margin: 0;
+        margin: 0 0 20px 0;
     }
 
-    .file-upload img {
-        width: 80px;
-        height: 50px;
-    }
-
+    /* TERMOS E CONDIÇÕES */
     .terms {
-        display: flex;
-        align-items: flex-start;
-        margin: 20px 0;
-        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        margin: 15px 0;
     }
 
     .terms input[type="checkbox"] {
         width: 20px;
         height: 20px;
-        margin-top: 3px;
         margin-right: 10px;
     }
 
     .terms label {
         width: calc(100% - 30px);
-        height: auto;
         font-size: 14px;
         line-height: 1.4;
         white-space: normal;
-        margin-left: 0;
-        overflow: visible;
     }
 
+    /* BOTÕES */
     .botao-container {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        margin-top: 30px;
-        margin-left: 0;
-        width: 100%;
+        margin: 20px 0 0 0;
+        gap: 10px;
     }
 
     .inscricao {
-        width: 100%;
         height: 50px;
         font-size: 16px;
     }
 }
 
 @media (max-width: 400px) {
-    .container {
+    body {
         padding: 15px 10px;
     }
 
@@ -575,9 +528,7 @@ input[type="file"] {
         font-size: 20px;
     }
 
-    input,
-    select,
-    button {
+    input, select, button {
         padding: 10px 12px;
     }
 }
