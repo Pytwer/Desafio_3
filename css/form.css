@@ -369,7 +369,6 @@ input[type="file"] {
     }
     .form-column {
         width: 100%;
-
         padding: 20px 15px;
         overflow-y: auto;
     }
@@ -392,7 +391,7 @@ input[type="file"] {
         display: block;
     }
     input, select, button {
-        width: 96%;
+        width: 95%;
         padding: 10px;
         font-size: 15px;
         border-radius: 8px;
