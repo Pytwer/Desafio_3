@@ -410,6 +410,7 @@ input[type="file"] {
 
 @media (max-width: 767px) {
     body {
+        display: flex;
         height: auto;
     }
 
@@ -424,7 +425,7 @@ input[type="file"] {
     }
 
     .form-column {
-        width: 100vh;
+        width: 150vh;
         padding: 20px 15px;
         overflow-y: auto;
     }
