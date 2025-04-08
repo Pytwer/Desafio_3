@@ -425,7 +425,7 @@ input[type="file"] {
     }
 
     .form-column {
-        width: 150vh;
+        width: 100vh;
         padding: 20px 15px;
         overflow-y: auto;
     }
@@ -434,13 +434,18 @@ input[type="file"] {
         font-size: 22px;
         margin-bottom: 20px;
         line-height: 1.3;
+        width: 300px;
+        overflow: hidden;
     }
 
     .form h2 {
+        width: 200px;
         font-size: 18px;
         margin: 25px 0 15px 0;
     }
-
+    .subtitulo{
+        width: 400px;
+    }
     form {
         gap: 20px;
         padding-bottom: 40px;
