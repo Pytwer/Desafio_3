@@ -412,6 +412,7 @@ input[type="file"] {
     body {
         display: flex;
         height: auto;
+        width: 360px;
     }
 
     .container {
