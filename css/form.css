@@ -462,7 +462,7 @@ input[type="file"] {
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: 100px;
+        height: 150px;
     }
 
     /* INPUTS, SELECTS, BOTÕES */
