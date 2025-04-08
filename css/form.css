@@ -1,9 +1,11 @@
 /* Estilos Gerais */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-*{
+
+* {
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
 }
+
 body {
     margin: 0;
     padding: 0;
@@ -13,158 +15,189 @@ body {
     background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; 
+    min-height: 100vh;
 }
+
 .container {
     display: flex;
     width: 100%;
-    min-height: 100vh; 
-    height: auto; 
+    min-height: 100vh;
+    height: auto;
 }
+
 .form-column {
     flex: 1;
     padding: 30px;
-    margin-right: 40%; /* Igual à largura da image-column */
+    margin-right: 40%;
+    /* Igual à largura da image-column */
     overflow-y: auto;
 }
+
 .image-column {
     width: 40%;
     background-image: url('/img/bannerform.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    position: fixed; 
+    position: fixed;
     top: 0;
     right: 0;
     height: 100vh;
     z-index: 1;
 }
+
 .form {
-    max-width: 800px; 
+    max-width: 800px;
 }
+
 .form h1 {
-    text-align: left; 
-    color: #000000; 
+    text-align: left;
+    color: #000000;
     margin-bottom: 20px;
 }
+
 .form h2 {
     color: #000000;
-    margin-top: 20px; 
-    margin-bottom: 10px; 
+    margin-top: 20px;
+    margin-bottom: 10px;
     text-align: left;
 }
+
 form {
-    display: flex; 
-    flex-direction: column; 
+    display: flex;
+    flex-direction: column;
     gap: 20px;
 }
+
 label {
-    font-weight: bold;  
-    margin-bottom: 5px; 
-    text-align: left; 
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
 }
-input, select, button {
-    padding: 10px; 
-    font-size: 16px; 
-    border: 1px solid #ccc; 
+
+input,
+select,
+button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
     border-radius: 5px;
     width: 100%;
     box-sizing: border-box;
 }
-.button{ 
-    background-color: #0080ff; 
+
+.button {
+    background-color: #0080ff;
     color: white;
-    cursor: pointer; 
-    transition: background-color 0.3s; 
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
-button:hover { 
-    background-color: #1abc9c; 
+
+button:hover {
+    background-color: #1abc9c;
 }
-.row { 
-    display: flex; 
-    gap: 15px; 
+
+.row {
+    display: flex;
+    gap: 15px;
 }
-.row > div {
+
+.row>div {
     flex: 1;
 }
+
 .terms {
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
+
 .terms input {
-    width: auto; 
+    width: auto;
 }
+
 input[type="file"] {
-    padding: 5px; 
+    padding: 5px;
 }
+
 .trilha-option {
-    display: flex; 
+    display: flex;
     flex-direction: column;
-    align-items: center; 
-    border: 3px solid #ccc; 
-    border-radius: 8px; 
+    align-items: center;
+    border: 3px solid #ccc;
+    border-radius: 8px;
     padding: 20px;
     cursor: pointer;
-    transition: border-color 0.3s, background-color 0.3s; 
+    transition: border-color 0.3s, background-color 0.3s;
     width: 340px;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
+
 .trilha-option input[type="radio"] {
-    display: none; 
+    display: none;
 }
+
 .trilha-option img {
     width: 100px;
     height: 100px;
     object-fit: cover;
 }
+
 .trilha-option span {
-    margin-top: 10px; 
-    font-size: 14px; 
+    margin-top: 10px;
+    font-size: 14px;
     text-align: center;
-    color: #333; 
+    color: #333;
 }
+
 .trilha-option.selected {
-    border-color: #e43a12; 
+    border-color: #e43a12;
 }
+
 .trilha-option:hover {
-    border-color: #e43a12; 
+    border-color: #e43a12;
 }
+
 .file-upload {
-    display: flex; 
-    flex-direction: column; 
+    display: flex;
+    flex-direction: column;
     align-items: center;
     cursor: pointer;
     width: 700px;
     height: auto;
     border: 2px dashed #ccc;
     border-radius: 8px;
-    padding: 20px; 
-    transition: border-color 0.3s; 
-    overflow: hidden; 
-    margin: 0 auto; 
+    padding: 20px;
+    transition: border-color 0.3s;
+    overflow: hidden;
+    margin: 0 auto;
     gap: 10px;
 }
+
 .file-upload img {
-    width: 100px;   
-    height: 100px; 
-    object-fit: cover; 
-    transition: transform 0.3s; 
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    transition: transform 0.3s;
 }
+
 .file-upload:hover img {
     transform: scale(0.9);
 }
+
 .file-upload:hover {
-    border-color: #0080ff; 
+    border-color: #0080ff;
 }
+
 .botao-container {
     display: flex;
     justify-content: flex-end;
     gap: 30px;
     margin-top: 30px;
-    position: relative; 
-    z-index: 2; 
+    position: relative;
+    z-index: 2;
 }
+
 .inscricao {
     background-color: #f3541c;
     border: none;
@@ -175,30 +208,35 @@ input[type="file"] {
     text-align: center;
     font-size: 14px;
     cursor: pointer;
-    position: relative; 
-    overflow: visible; 
-    white-space: nowrap; 
+    position: relative;
+    overflow: visible;
+    white-space: nowrap;
 }
+
 .inscricao:hover {
     background-color: #d84315;
 }
+
 .Voltar {
     width: 80px;
     height: 25.5px;
     margin-right: 8px;
     vertical-align: middle;
 }
+
 .voltar {
     display: flex;
     align-items: center;
 }
+
 .trilhas {
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 25px; 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
     padding: 0;
     border-radius: 8px;
 }
+
 .custom-checkbox {
     display: flex;
     flex-direction: column;
@@ -215,6 +253,7 @@ input[type="file"] {
     margin-top: 10px;
     position: relative;
 }
+
 .custom-checkbox input[type="checkbox"] {
     position: absolute;
     top: 10px;
@@ -224,6 +263,7 @@ input[type="file"] {
     cursor: pointer;
     opacity: 0;
 }
+
 .custom-checkbox .checkmark {
     position: absolute;
     top: 10px;
@@ -237,19 +277,23 @@ input[type="file"] {
     align-items: center;
     justify-content: center;
 }
-.custom-checkbox input[type="checkbox"]:checked + .checkmark {
+
+.custom-checkbox input[type="checkbox"]:checked+.checkmark {
     background-color: #f3541c;
     border-color: #f3541c;
 }
-.custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
+
+.custom-checkbox input[type="checkbox"]:checked+.checkmark::after {
     content: '✔';
     font-size: 12px;
     color: white;
 }
+
 .custom-checkbox.selected {
-    border-color: #f3541c; 
+    border-color: #f3541c;
     background-color: #f0f0f0;
 }
+
 .custom-checkbox .content {
     display: flex;
     flex-direction: column;
@@ -257,10 +301,12 @@ input[type="file"] {
     gap: 10px;
     margin-top: 20px;
 }
+
 .custom-checkbox img {
     max-width: 30%;
     height: auto;
 }
+
 .custom-checkbox .texto {
     font-size: 16px;
     color: #333;
@@ -268,30 +314,36 @@ input[type="file"] {
     width: 100%;
     white-space: nowrap;
 }
-.custom-checkbox input[type="checkbox"]:checked + .checkmark {
+
+.custom-checkbox input[type="checkbox"]:checked+.checkmark {
     background-color: #f3541c;
     border-color: #f3541c;
 }
-.custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
+
+.custom-checkbox input[type="checkbox"]:checked+.checkmark::after {
     content: '✔';
     position: absolute;
     top: 0;
-    left: 25%; 
+    left: 25%;
     font-size: 12px;
     color: white;
-    transition: left 0.3s ease; 
+    transition: left 0.3s ease;
 }
+
 .custom-checkbox:hover {
     border-color: #f3541c;
 }
+
 .custom-checkbox span {
     font-size: 15px;
     color: #333;
     text-align: center;
 }
+
 .custom-checkbox input[type="radio"] {
-    display: none; 
+    display: none;
 }
+
 .custom-checkbox .content {
     display: flex;
     flex-direction: column;
@@ -335,7 +387,7 @@ input[type="file"] {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -355,112 +407,159 @@ input[type="file"] {
     font-size: 1.2rem;
     margin-top: 15px;
 }
+
 @media (max-width: 767px) {
     body {
         height: auto;
     }
+
     .container {
         flex-direction: column;
         height: auto;
         min-height: 100vh;
     }
+
     .image-column {
         display: none;
     }
+
     .form-column {
-        width: 100%;
+        width: 100vh;
         padding: 20px 15px;
         overflow-y: auto;
     }
+
     .form h1 {
         font-size: 22px;
         margin-bottom: 20px;
         line-height: 1.3;
     }
+
     .form h2 {
         font-size: 18px;
         margin: 25px 0 15px 0;
     }
+
     form {
         gap: 20px;
         padding-bottom: 40px;
     }
+
     label {
         font-size: 15px;
         margin-bottom: 8px;
         display: block;
     }
-    input, select, button {
-        width: 99%;
+
+    input,
+    select,
+    button {
+        width: 300px;
         font-size: 14px;
         border-radius: 6px;
     }
+
     .trilhas {
         grid-template-columns: 1fr;
         gap: 15px;
+        float: left;
+        align-self: flex-start;
+        width: 350px
     }
+
     .custom-checkbox {
-        width: 100%; /* Ocupa 100% mas com margens */
-        max-width: 250px; /* Largura máxima reduzida */
+        width: 100%;
+        /* Ocupa 100% mas com margens */
+        max-width: 250px;
+        /* Largura máxima reduzida */
         margin-left: auto;
         margin-right: auto;
-        height: 130px; /* Altura um pouco menor */
+        height: 130px;
+        /* Altura um pouco menor */
         padding: 15px;
     }
+
     .custom-checkbox img {
-        max-width: 35px; 
+        max-width: 35px;
     }
+
     .custom-checkbox .texto {
         font-size: 14px;
-        white-space: normal; 
+        white-space: normal;
     }
+
     .file-upload {
         width: 100%;
-        max-width: 300px; 
-        margin-left: auto;
-        margin-right: auto;
+        max-width: 300px;
+        height: auto;
+        margin: 0;
+        /* Remove a margem automática que centralizava */
         padding: 15px;
+        align-self: flex-start;
+        /* Para containers flex */
+        float: left;
+        /* Alternativa tradicional */
+        /* ou */
+        margin-right: auto;
+        /* Outra abordagem para alinhar à esquerda */
     }
+
     .file-upload img {
-        width: 80px; /* Ícone menor */
+        width: 80px;
+        /* Ícone menor */
         height: 50px;
     }
+
     .terms {
         align-items: flex-start;
         margin: 20px 0;
     }
+
     .terms input[type="checkbox"] {
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         margin-top: 3px;
+        border-radius: 100%;
     }
+
     .terms label {
-        font-size: 15px;
-        line-height: 1.4;
-        margin-left: 20px;
+        width: 300px;
+        height: 50px;
+        overflow: hidden;
+        font-size: 17px;
+        line-height: 0.8;        
+        margin-left: 1px;
     }
+
     .botao-container {
         flex-direction: column;
         gap: 15px;
         margin-top: 30px;
-        margin-left: 200px;
+        margin-left: 150px;
     }
+
     .inscricao {
-        width: 90%;
+        width: 180px;
         height: 50px;
         font-size: 16px;
     }
 }
+
 @media (max-width: 400px) {
     .form-column {
         padding: 15px 10px;
     }
+
     .form h1 {
         font-size: 20px;
     }
-    input, select, button {
+
+    input,
+    select,
+    button {
         padding: 10px 12px;
     }
+
     .custom-checkbox {
         height: 130px;
     }
