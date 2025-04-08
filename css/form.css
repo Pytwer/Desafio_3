@@ -411,14 +411,19 @@ input[type="file"] {
 @media (max-width: 767px) {
     body {
         display: flex;
-        height: auto;
-        width: 360px;
+        justify-content: center;
+        width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
     }
 
     .container {
+        width: 100%;
+        max-width: 360px;
+        padding: 20px 15px;
+        display: flex;
         flex-direction: column;
-        height: auto;
-        min-height: 100vh;
     }
 
     .image-column {
@@ -426,66 +431,80 @@ input[type="file"] {
     }
 
     .form-column {
-        width: 6000vh;
-        padding: 20px 15px;
-        overflow-y: auto;
-        grid-template-columns: 1fr;
-
+        width: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
     }
 
     .form h1 {
         font-size: 22px;
         margin-bottom: 20px;
         line-height: 1.3;
-        width: 300px;
-        overflow: hidden;
+        width: 100%;
     }
 
     .form h2 {
-        width: 200px;
+        width: 100%;
         font-size: 18px;
         margin: 25px 0 15px 0;
     }
-    .subtitulo{
-        width: 400px;
+    
+    .subtitulo {
+        width: 100%;
     }
+    
     form {
+        display: flex;
+        flex-direction: column;
         gap: 20px;
+        width: 100%;
         padding-bottom: 40px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
     }
 
     label {
         font-size: 15px;
         margin-bottom: 8px;
         display: block;
+        width: 100%;
+    }
+
+    input,
+    select,
+    button,
+    .file-upload,
+    .custom-checkbox {
+        width: 100% !important;
+        max-width: 100% !important;
+        font-size: 14px;
+        border-radius: 6px;
+        box-sizing: border-box;
     }
 
     input,
     select,
     button {
-        width: 300px;
-        font-size: 14px;
-        border-radius: 6px;
+        padding: 12px 15px;
     }
 
     .trilhas {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 15px;
-        float: left;
-        align-self: flex-start;
-        width: 350px
+        width: 100%;
     }
 
     .custom-checkbox {
-        width: 100%;
-        /* Ocupa 100% mas com margens */
-        max-width: 250px;
-        /* Largura máxima reduzida */
-        margin-left: auto;
-        margin-right: auto;
-        height: 130px;
-        /* Altura um pouco menor */
+        height: auto;
+        min-height: 130px;
         padding: 15px;
+        margin: 0;
     }
 
     .custom-checkbox img {
@@ -498,64 +517,57 @@ input[type="file"] {
     }
 
     .file-upload {
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-        margin: 0;
-        /* Remove a margem automática que centralizava */
         padding: 15px;
-        align-self: flex-start;
-        /* Para containers flex */
-        float: left;
-        /* Alternativa tradicional */
-        /* ou */
-        margin-right: auto;
-        /* Outra abordagem para alinhar à esquerda */
+        margin: 0;
     }
 
     .file-upload img {
         width: 80px;
-        /* Ícone menor */
         height: 50px;
     }
 
     .terms {
+        display: flex;
         align-items: flex-start;
         margin: 20px 0;
+        width: 100%;
     }
 
     .terms input[type="checkbox"] {
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         margin-top: 3px;
-        border-radius: 100%;
+        margin-right: 10px;
     }
 
     .terms label {
-        width: 300px;
-        height: 50px;
-        overflow: hidden;
-        font-size: 17px;
-        line-height: 0.8;        
-        margin-left: 1px;
+        width: calc(100% - 30px);
+        height: auto;
+        font-size: 14px;
+        line-height: 1.4;
+        white-space: normal;
+        margin-left: 0;
+        overflow: visible;
     }
 
     .botao-container {
+        display: flex;
         flex-direction: column;
         gap: 15px;
         margin-top: 30px;
-        margin-left: 150px;
+        margin-left: 0;
+        width: 100%;
     }
 
     .inscricao {
-        width: 180px;
+        width: 100%;
         height: 50px;
         font-size: 16px;
     }
 }
 
 @media (max-width: 400px) {
-    .form-column {
+    .container {
         padding: 15px 10px;
     }
 
@@ -567,9 +579,5 @@ input[type="file"] {
     select,
     button {
         padding: 10px 12px;
-    }
-
-    .custom-checkbox {
-        height: 130px;
     }
 }
