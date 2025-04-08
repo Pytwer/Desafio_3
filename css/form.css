@@ -1,14 +1,5 @@
 /* Estilos Gerais */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20%, 60% { transform: translateX(-5px); }
-    40%, 80% { transform: translateX(5px); }
-}
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
 *{
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
@@ -307,44 +298,7 @@ input[type="file"] {
     align-items: center;
     gap: 10px;
 }
-.loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-}
-.loading-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-.loading-content {
-    text-align: center;
-    padding: 30px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    max-width: 80%;
-}
-.loading-video {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 20px;
-    animation: spin 1.5s linear infinite;
-}
-.loading-text {
-    font-size: 18px;
-    color: #333;
-    margin-top: 15px;
-}
+
 /* Estilos para mensagens de erro */
 .mensagem-erro {
     color: #ff0000;
@@ -375,32 +329,31 @@ input[type="file"] {
     border-radius: 4px;
 }
 
-.loading-overlay {
-    display: none; /* Inicialmente oculto */
+#loadingContainer {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 9999;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-.loading-content {
-    text-align: center;
+    z-index: 1000;
     color: white;
 }
 
 .loading-image {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     margin-bottom: 20px;
+    animation: spin 1s linear infinite;
 }
 
 .loading-text {
-    font-size: 1.5rem;
-    margin-top: 10px;
+    font-size: 1.2rem;
+    margin-top: 15px;
 }
 @media (max-width: 767px) {
     body {

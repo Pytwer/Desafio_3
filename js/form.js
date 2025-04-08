@@ -1,101 +1,228 @@
+// Array para armazenar campos inválidos
+const camposInvalidos = [];
+
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('inscricaoForm');
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    aplicarMascaras()
+    const loadingContainer = document.getElementById('loadingContainer');
+    
+    // Inicializa máscaras e validações
+    aplicarMascaras();
+    configurarValidacoes();
+    configurarCheckboxesPersonalizados();
+    
+    // Evento de submit do formulário
     form.addEventListener('submit', function(e) {
-        e.preventDefault(); // Evita o envio padrão do formulário
+        e.preventDefault(); // Impede o comportamento padrão de submit e reset
         
-        // Mostra o loading
-        loadingOverlay.style.display = 'flex';
+        console.log('Formulário submetido - iniciando validação');
         
-        // Redireciona após 2 segundos
-        setTimeout(function() {
-            window.location.href = '/pgs/menu.html';
-        }, 2000);
+        // Limpa erros anteriores
+        camposInvalidos.length = 0;
+        
+        if (validarFormulario()) {
+            console.log('Formulário válido - processando...');
+            
+            // Mostra o loading
+            loadingContainer.style.display = 'flex';
+            
+            // Simula um tempo de processamento (remova isso na implementação real)
+            setTimeout(() => {
+                // Esconde o loading após o processamento
+                loadingContainer.style.display = 'none';
+                
+                // Redireciona após o envio
+                window.location.href = '/pgs/menu.html';
+            }, 2000); // 2 segundos apenas para demonstração
+            
+            // Na implementação real, você faria algo como:
+            // enviarFormulario()
+            //   .then(() => {
+            //       loadingContainer.style.display = 'none';
+            //       window.location.href = '/pgs/menu.html';
+            //   })
+            //   .catch(error => {
+            //       loadingContainer.style.display = 'none';
+            //       console.error('Erro no envio:', error);
+            //       alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
+            //   });
+            
+        } else {
+            console.log('Formulário inválido. Erros encontrados:');
+            camposInvalidos.forEach(campo => console.log(campo.id || campo.name));
+            
+            // Rolagem para o primeiro erro
+            if (camposInvalidos.length > 0) {
+                camposInvalidos[0].scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }
+        }
     });
 });
+
+// Função para aplicar máscaras aos campos
 function aplicarMascaras() {
-    // Máscara para CPF
+    // Máscara para CPF (000.000.000-00)
     const cpfInput = document.getElementById('cpf');
-    cpfInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        value = value.replace(/(\d{3})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-        e.target.value = value;
-    });
+    if (cpfInput) {
+        cpfInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.substring(0, 11);
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            e.target.value = value;
+        });
+    }
     
-    // Máscara para Telefone
+    // Máscara para Telefone ((00) 00000-0000)
     const telInput = document.querySelector('input[attrname="telephone1"]');
-    telInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
-        value = value.replace(/(\d)(\d{4})$/, '$1-$2');
-        e.target.value = value;
-    });
+    if (telInput) {
+        telInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.substring(0, 11);
+            if (value.length > 2) {
+                value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+            }
+            if (value.length > 10) {
+                value = value.replace(/(\d{5})(\d)/, '$1-$2');
+            } else if (value.length > 6) {
+                value = value.replace(/(\d{4})(\d)/, '$1-$2');
+            }
+            e.target.value = value;
+        });
+    }
     
-    // Máscara para CEP
+    // Máscara para CEP (00000-000)
     const cepInput = document.getElementById('cep');
-    cepInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        value = value.replace(/^(\d{5})(\d)/, '$1-$2');
-        e.target.value = value;
-    });
+    if (cepInput) {
+        cepInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.substring(0, 8);
+            if (value.length > 5) {
+                value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+            }
+            e.target.value = value;
+        });
+    }
 }
 
+// Configura validações quando o campo perde o foco
 function configurarValidacoes() {
-    // Validar quando o campo perde o foco
     const campos = [
         { id: 'name', validator: validarNome },
         { id: 'date', validator: validarDataNascimento },
         { id: 'cpf', validator: validarCPF },
         { id: 'email', validator: validarEmail },
+        { element: document.querySelector('input[attrname="telephone1"]'), validator: validarTelefone },
         { id: 'cep', validator: validarCEP },
         { id: 'street', validator: validarRua },
         { id: 'number', validator: validarNumero },
         { id: 'city', validator: validarCidade },
-        { id: 'state', validator: validarEstado },
-        { id: 'tel', validator: validarTelefone, element: document.querySelector('input[attrname="telephone1"]') }
+        { id: 'state', validator: validarEstado }
     ];
     
     campos.forEach(campo => {
         const element = campo.element || document.getElementById(campo.id);
-        element.addEventListener('blur', function() {
-            campo.validator(this);
+        if (element) {
+            element.addEventListener('blur', function() {
+                campo.validator(this);
+            });
+            
+            element.addEventListener('input', function() {
+                if (this.classList.contains('input-error')) {
+                    const errorElement = this.nextElementSibling;
+                    if (errorElement && errorElement.classList.contains('error-message')) {
+                        errorElement.style.display = 'none';
+                        this.classList.remove('input-error');
+                    }
+                }
+            });
+        }
+    });
+}
+
+// Configura os checkboxes personalizados
+function configurarCheckboxesPersonalizados() {
+    const customCheckboxes = document.querySelectorAll('.custom-checkbox');
+    
+    customCheckboxes.forEach((checkboxContainer) => {
+        const checkbox = checkboxContainer.querySelector('input[type="checkbox"]');
+        
+        checkboxContainer.addEventListener('click', (event) => {
+            if (event.target.tagName === 'INPUT' && event.target.type === 'checkbox') {
+                return;
+            }
+            
+            event.preventDefault();
+            
+            if (checkbox.checked) {
+                checkbox.checked = false;
+                checkboxContainer.classList.remove('selected');
+            } else {
+                document.querySelectorAll('.custom-checkbox').forEach((option) => {
+                    option.classList.remove('selected');
+                    option.querySelector('input[type="checkbox"]').checked = false;
+                });
+                
+                checkbox.checked = true;
+                checkboxContainer.classList.add('selected');
+            }
+            
+            const errorElement = document.getElementById('trilhas-error');
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
+        });
+        
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                document.querySelectorAll('.custom-checkbox').forEach((option) => {
+                    option.classList.remove('selected');
+                    option.querySelector('input[type="checkbox"]').checked = false;
+                });
+                checkboxContainer.classList.add('selected');
+                this.checked = true;
+            } else {
+                checkboxContainer.classList.remove('selected');
+            }
         });
     });
 }
 
+// Função principal de validação
 function validarFormulario() {
-    let valido = true;
+    camposInvalidos.length = 0;
     
-    // Validar campos básicos
-    valido = validarNome(document.getElementById('name')) && valido;
-    valido = validarDataNascimento(document.getElementById('date')) && valido;
-    valido = validarCPF(document.getElementById('cpf')) && valido;
-    valido = validarEmail(document.getElementById('email')) && valido;
-    valido = validarTelefone(document.querySelector('input[attrname="telephone1"]')) && valido;
+    const validacoes = [
+        { nome: 'Nome', valido: validarCampo('name', validarNome) },
+        { nome: 'Data Nascimento', valido: validarCampo('date', validarDataNascimento) },
+        { nome: 'CPF', valido: validarCampo('cpf', validarCPF) },
+        { nome: 'Email', valido: validarCampo('email', validarEmail) },
+        { nome: 'Telefone', valido: validarCampo(null, validarTelefone, document.querySelector('input[attrname="telephone1"]')) },
+        { nome: 'Documento Identidade', valido: validarDocumento('identity') },
+        { nome: 'CEP', valido: validarCampo('cep', validarCEP) },
+        { nome: 'Rua', valido: validarCampo('street', validarRua) },
+        { nome: 'Número', valido: validarCampo('number', validarNumero) },
+        { nome: 'Cidade', valido: validarCampo('city', validarCidade) },
+        { nome: 'Estado', valido: validarCampo('state', validarEstado) },
+        { nome: 'Comprovante Residência', valido: validarDocumento('residence-proof') },
+        { nome: 'Trilhas', valido: validarTrilhas() },
+        { nome: 'Termos', valido: validarTermos() }
+    ];
     
-    // Validar documentos
-    valido = validarDocumento('identity') && valido;
+    return validacoes.every(v => v.valido);
+}
+
+// Função auxiliar para validar campos
+function validarCampo(id, validator, element = null) {
+    const input = element || document.getElementById(id);
+    if (!input) return false;
     
-    // Validar endereço
-    valido = validarCEP(document.getElementById('cep')) && valido;
-    valido = validarRua(document.getElementById('street')) && valido;
-    valido = validarNumero(document.getElementById('number')) && valido;
-    valido = validarCidade(document.getElementById('city')) && valido;
-    valido = validarEstado(document.getElementById('state')) && valido;
-    
-    // Validar comprovante de residência
-    valido = validarDocumento('residence-proof') && valido;
-    
-    // Validar trilhas selecionadas
-    valido = validarTrilhas() && valido;
-    
-    // Validar termos
-    valido = validarTermos() && valido;
-    
-    return valido;
+    const isValid = validator(input);
+    if (!isValid) camposInvalidos.push(input);
+    return isValid;
 }
 
 // Funções de validação individuais
@@ -153,13 +280,7 @@ function validarCPF(input) {
         return false;
     }
     
-    if (value.length !== 11) {
-        mostrarErro(input, errorElement, 'CPF inválido');
-        return false;
-    }
-    
-    // Validar dígitos verificadores
-    if (!validarDigitosCPF(value)) {
+    if (value.length !== 11 || !validarDigitosCPF(value)) {
         mostrarErro(input, errorElement, 'CPF inválido');
         return false;
     }
@@ -169,17 +290,13 @@ function validarCPF(input) {
 }
 
 function validarDigitosCPF(cpf) {
+    if (/^(\d)\1{10}$/.test(cpf)) return false;
+    
     let soma = 0;
-    let resto;
-    
-    if (cpf === "00000000000") return false;
-    
     for (let i = 1; i <= 9; i++) {
         soma += parseInt(cpf.substring(i-1, i)) * (11 - i);
     }
-    
-    resto = (soma * 10) % 11;
-    
+    let resto = (soma * 10) % 11;
     if ((resto === 10) || (resto === 11)) resto = 0;
     if (resto !== parseInt(cpf.substring(9, 10))) return false;
     
@@ -187,9 +304,7 @@ function validarDigitosCPF(cpf) {
     for (let i = 1; i <= 10; i++) {
         soma += parseInt(cpf.substring(i-1, i)) * (12 - i);
     }
-    
     resto = (soma * 10) % 11;
-    
     if ((resto === 10) || (resto === 11)) resto = 0;
     if (resto !== parseInt(cpf.substring(10, 11))) return false;
     
@@ -236,19 +351,26 @@ function validarTelefone(input) {
 function validarDocumento(id) {
     const input = document.getElementById(id);
     const errorElement = criarOuObterErrorElement(input);
+    const imageElement = document.getElementById(`${id}-image`);
     
     if (!input.files || input.files.length === 0) {
         mostrarErro(input, errorElement, 'O documento é obrigatório');
+        if (imageElement) imageElement.style.border = '2px solid #ff4444';
         return false;
     }
     
     const file = input.files[0];
     if (file.type !== 'application/pdf') {
         mostrarErro(input, errorElement, 'Apenas arquivos PDF são aceitos');
+        if (imageElement) imageElement.style.border = '2px solid #ff4444';
         return false;
     }
     
     removerErro(input, errorElement);
+    if (imageElement) {
+        imageElement.style.border = '2px solid #4CAF50';
+        setTimeout(() => imageElement.style.border = 'none', 2000);
+    }
     return true;
 }
 
@@ -315,33 +437,38 @@ function validarCidade(input) {
 }
 
 function validarEstado(input) {
-    const value = input.value.trim();
+    const value = input.value.trim().toUpperCase();
     const errorElement = criarOuObterErrorElement(input);
+    const estados = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
     
     if (!value) {
         mostrarErro(input, errorElement, 'O estado é obrigatório');
         return false;
     }
     
-    if (value.length !== 2) {
+    if (value.length !== 2 || !estados.includes(value)) {
         mostrarErro(input, errorElement, 'Use a sigla do estado (ex: SP)');
         return false;
     }
     
+    input.value = value;
     removerErro(input, errorElement);
     return true;
 }
 
 function validarTrilhas() {
-    const trilhas = document.querySelectorAll('.trilhas input[type="checkbox"]:checked');
+    const trilhasSelecionadas = document.querySelectorAll('.trilhas input[type="checkbox"]:checked');
     const errorElement = document.getElementById('trilhas-error') || criarErrorElementGlobal('trilhas-error', 'Por favor, selecione pelo menos uma trilha');
     
-    if (trilhas.length === 0) {
+    if (trilhasSelecionadas.length === 0) {
         const trilhasContainer = document.querySelector('.trilhas');
+        
         if (!document.getElementById('trilhas-error')) {
             trilhasContainer.parentNode.insertBefore(errorElement, trilhasContainer.nextSibling);
         }
+        
         errorElement.style.display = 'block';
+        camposInvalidos.push(trilhasContainer);
         return false;
     }
     
@@ -353,12 +480,7 @@ function validarTermos() {
     const termos = document.querySelectorAll('input[name="terms"]');
     const errorElement = document.getElementById('termos-error') || criarErrorElementGlobal('termos-error', 'Você deve aceitar os termos para continuar');
     
-    let todosAceitos = true;
-    termos.forEach(termo => {
-        if (!termo.checked) {
-            todosAceitos = false;
-        }
-    });
+    const todosAceitos = Array.from(termos).every(termo => termo.checked);
     
     if (!todosAceitos) {
         const termosContainer = document.querySelector('.terms:last-of-type');
@@ -366,6 +488,7 @@ function validarTermos() {
             termosContainer.parentNode.insertBefore(errorElement, termosContainer.nextSibling);
         }
         errorElement.style.display = 'block';
+        camposInvalidos.push(termosContainer);
         return false;
     }
     
@@ -373,7 +496,7 @@ function validarTermos() {
     return true;
 }
 
-// Funções auxiliares
+// Funções auxiliares para manipulação de erros
 function criarOuObterErrorElement(input) {
     let errorElement = input.nextElementSibling;
     
@@ -389,22 +512,24 @@ function criarOuObterErrorElement(input) {
 function criarErrorElementGlobal(id, mensagem) {
     const errorElement = document.createElement('div');
     errorElement.id = id;
-    errorElement.className = 'error-message';
+    errorElement.className = 'error-message global-error';
     errorElement.textContent = mensagem;
-    errorElement.style.color = 'red';
+    errorElement.style.color = '#ff4444';
     errorElement.style.marginTop = '5px';
     errorElement.style.display = 'none';
     return errorElement;
 }
 
 function mostrarErro(input, errorElement, mensagem) {
-    input.style.borderColor = 'red';
+    input.classList.add('input-error');
     errorElement.textContent = mensagem;
     errorElement.style.display = 'block';
+    errorElement.style.color = '#ff4444';
+    errorElement.style.fontSize = '0.8rem';
+    errorElement.style.marginTop = '5px';
 }
 
 function removerErro(input, errorElement) {
-    input.style.borderColor = '';
+    input.classList.remove('input-error');
     errorElement.style.display = 'none';
 }
-
