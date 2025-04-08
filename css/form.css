@@ -435,6 +435,7 @@ input[type="file"] {
 
     .form-column {
         padding: 0;
+        width: 100vh;
     }
 
     /* TÍTULOS */
