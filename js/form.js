@@ -214,7 +214,7 @@ function validarCPF(input) {
     }
     removerErro(input, errorElement);
     return true;
-}b 
+}
 function validarDigitosCPF(cpf) {
     if (/^(\d)\1{10}$/.test(cpf)) return false;
     let soma = 0;
