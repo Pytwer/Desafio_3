@@ -439,28 +439,20 @@ function getFormData() {
             }),
         termosAceitos: document.querySelectorAll('input[name="terms"]:checked').length === 2
     };
-    
     return formData;
 }
-
 function saveToLocalStorage() {
     const formData = getFormData();
     localStorage.setItem('inscricaoTrilhas', JSON.stringify(formData));
     console.log('Dados salvos no localStorage:', formData);
 }
-
 function printSavedData() {
     const savedData = localStorage.getItem('inscricaoTrilhas');
-
     if (!savedData) {
         console.log('Nenhum dado encontrado no localStorage.');
         return;
     }
-    
-    // Converte de JSON para objeto JavaScript
     const formData = JSON.parse(savedData);
-    
-    // Imprime as informações de forma organizada no console
     console.log('=== DADOS SALVOS NO LOCALSTORAGE ===');
     console.log('Informações Pessoais:');
     console.log(`Nome: ${formData.nome}`);
@@ -469,19 +461,16 @@ function printSavedData() {
     console.log(`Sexo: ${formData.sexo}`);
     console.log(`E-mail: ${formData.email}`);
     console.log(`Telefone: ${formData.telefone}`);
-    
     console.log('\nEndereço:');
     console.log(`CEP: ${formData.cep}`);
     console.log(`Rua: ${formData.rua}`);
     console.log(`Número: ${formData.numero}`);
     console.log(`Cidade: ${formData.cidade}`);
     console.log(`Estado: ${formData.estado}`);
-    
     console.log('\nTrilhas Selecionadas:');
     formData.trilhas.forEach((trilha, index) => {
         console.log(`${index + 1}. ${trilha}`);
     });
-    
     console.log(`\nTermos Aceitos: ${formData.termosAceitos ? 'Sim' : 'Não'}`);
     console.log('====================================');
 }
