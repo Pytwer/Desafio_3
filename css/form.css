@@ -345,103 +345,80 @@ input[type="file"] {
     font-size: 1.2rem;
     margin-top: 15px;
 }
-/*mediaquery fi*/
-@media (max-width: 767px) {
-    body, .container, .form-column, form {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        display: flex;
+@media only screen and (max-width: 768px) {
+    .container {
         flex-direction: column;
     }
-    body {
-        min-height: 100vh;
-        align-items: center;
-        padding: 20px 15px;
-        box-sizing: border-box;
-    }
-    .container {
-        max-width: 360px;
+    .form-column {
+        margin-right: 0;
+        padding: 20px;
+        order: 2;
     }
     .image-column {
         display: none;
     }
-    .form-column {
-        padding: 0;
-        width: 100vh;
+    .form {
+        max-width: 100%;
     }
-    .form h1, .form h2, .subtitulo {
-        width: 100% !important;
-        margin: 0 0 15px 0;
-        font-size: 22px;
-        line-height: 1.3;
-        padding: 10px;
-        overflow: hidden;
-    }
-    .form h2 {
-        font-size: 18px;
-    }
-    form {
-        gap: 20px;
-        width: 400px;
-    }
-    .form-group, .trilhas, .terms, .file-upload, .botao-container {
-        display: flex;
+    .row {
         flex-direction: column;
-        width: 100%;
-        height: 150px;
+        gap: 10px;
     }
-    input, select, button, .file-upload, .custom-checkbox {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 12px;
-        font-size: 14px;
-        border-radius: 6px;
-        box-sizing: border-box;
-        margin-bottom: 0;
+    .trilhas {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        
+    }
+    .trilha-option, .custom-checkbox {
+        width: 280px;
+        max-width: 100%;
+    }
+    .file-upload {
+        width: 250px;
+        padding: 15px;
+    }
+    .botao-container {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    .inscricao, .voltar {
+        width: 100%;
+        max-width: 300px;
+    }
+    .Voltar {
+        width: 60px;
     }
     .custom-checkbox {
         height: auto;
         padding: 15px;
-        margin: 0 0 15px 0 !important;
     }
-    .file-upload {
-        padding: 15px;
-        margin: 0 0 20px 0;
+    .custom-checkbox img {
+        max-width: 50px;
     }
-    .terms {
-        flex-direction: row;
-        align-items: center;
-        margin: 15px 0;
-    }
-    .terms input[type="checkbox"] {
-        width: 20px;
-        height: 20px;
-        margin-right: 10px;
-    }
-    .terms label {
-        width: calc(100% - 30px);
-        font-size: 14px;
-        line-height: 1.4;
+    .custom-checkbox .texto {
         white-space: normal;
     }
-    .botao-container {
-        margin: 20px 0 0 0;
-        gap: 10px;
-    }
-    .inscricao {
-        height: 50px;
-        font-size: 16px;
+    .terms input {
+        width: 50px;
     }
 }
-@media (max-width: 400px) {
-    body {
-        padding: 15px 10px;
-    }
+@media only screen and (max-width: 480px) {
     .form h1 {
-        font-size: 20px;
+        font-size: 1.5rem;
+    }
+    .form h2 {
+        font-size: 1.2rem;
     }
     input, select, button {
-        padding: 10px 12px;
+        font-size: 14px;
+        padding: 8px;
+    }
+    .loading-image {
+        width: 150px;
+        height: 150px;
+    }
+    .loading-text {
+        font-size: 1rem;
     }
 }
