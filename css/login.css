@@ -6,7 +6,6 @@ body {
     height: 100vh;
     overflow: hidden;
 }
-
 header {
     display: flex;
     justify-content: space-between;
@@ -24,7 +23,6 @@ header {
     width: auto;
     transition: transform var(--transition-speed);
 }
-
 .login-container {
     position: relative;
     height: 100vh;
@@ -32,7 +30,6 @@ header {
     justify-content: center;
     align-items: center;
 }
-
 .video-background {
     position: absolute;
     top: 0;
@@ -42,17 +39,14 @@ header {
     overflow: hidden;
     z-index: -1;
 }
-
 .video-background video {
     min-width: 100%;
     min-height: 100%;
     object-fit: cover;
 }
-
 .mobile-video {
     display: none;
 }
-
 form {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 40px;
@@ -62,12 +56,10 @@ form {
     max-width: 400px;
     text-align: center;
 }
-
 form h2 {
     margin-bottom: 20px;
     color: #333;
 }
-
 input {
     width: 100%;
     padding: 12px;
@@ -77,12 +69,10 @@ input {
     font-size: 16px;
     box-sizing: border-box;
 }
-
 input:focus {
     outline: none;
     border-color: #4CAF50;
 }
-
 button {
     width: 100%;
     padding: 12px;
@@ -95,39 +85,32 @@ button {
     margin-top: 10px;
     transition: background-color 0.3s;
 }
-
 button:hover {
     background-color: #4c00ff60;
 }
-
 button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
 }
-
 .register-link {
     margin: 15px 0;
     font-size: 14px;
-    display: none; /* Inicia oculto por padrão */
+    display: none; 
     animation: fadeIn 0.5s ease-in-out;
 }
-
 .register-link a {
     color: #ff0000;
     text-decoration: none;
 }
-
 .register-link a:hover {
     text-decoration: underline;
 }
-
 .message {
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 5px;
     display: none;
 }
-
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -143,12 +126,10 @@ button:disabled {
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
 }
-
 .loading-overlay.active {
     opacity: 1;
     visibility: visible;
 }
-
 .loading-content {
     text-align: center;
     padding: 30px;
@@ -157,13 +138,11 @@ button:disabled {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     max-width: 80%;
 }
-
 .loading-image {
     width: 80px;
     height: 80px;
     margin-bottom: 20px;
 }
-
 .loading-text {
     font-size: 18px;
     color: #333;
@@ -175,26 +154,20 @@ button:disabled {
     gap: 8px;
     margin: 15px 0;
 }
-
-
 @media (max-width: 768px) {
     .desktop-video {
         display: none;
     }
-    
     .mobile-video {
         display: block;
     }
-    
     form {
         padding: 30px 20px;
         margin: 0 20px;
     }
-    
     header {
         padding: 10px 0;
     }
-    
     .logo img {
         height: 50px;
     }

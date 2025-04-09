@@ -1,11 +1,8 @@
-/* Estilos Gerais */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
 * {
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
 }
-
 body {
     margin: 0;
     padding: 0;
@@ -17,22 +14,18 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-
 .container {
     display: flex;
     width: 100%;
     min-height: 100vh;
     height: auto;
 }
-
 .form-column {
     flex: 1;
     padding: 30px;
     margin-right: 40%;
-    /* Igual à largura da image-column */
     overflow-y: auto;
 }
-
 .image-column {
     width: 40%;
     background-image: url('/img/bannerform.png');
@@ -45,39 +38,31 @@ body {
     height: 100vh;
     z-index: 1;
 }
-
 .form {
     max-width: 800px;
 }
-
 .form h1 {
     text-align: left;
     color: #000000;
     margin-bottom: 20px;
 }
-
 .form h2 {
     color: #000000;
     margin-top: 20px;
     margin-bottom: 10px;
     text-align: left;
 }
-
 form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-
 label {
     font-weight: bold;
     margin-bottom: 5px;
     text-align: left;
 }
-
-input,
-select,
-button {
+input,select,button {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -85,41 +70,33 @@ button {
     width: 100%;
     box-sizing: border-box;
 }
-
 .button {
     background-color: #0080ff;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
 }
-
 button:hover {
     background-color: #1abc9c;
 }
-
 .row {
     display: flex;
     gap: 15px;
 }
-
 .row>div {
     flex: 1;
 }
-
 .terms {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-
 .terms input {
     width: auto;
 }
-
 input[type="file"] {
     padding: 5px;
 }
-
 .trilha-option {
     display: flex;
     flex-direction: column;
@@ -132,32 +109,26 @@ input[type="file"] {
     width: 340px;
     box-sizing: border-box;
 }
-
 .trilha-option input[type="radio"] {
     display: none;
 }
-
 .trilha-option img {
     width: 100px;
     height: 100px;
     object-fit: cover;
 }
-
 .trilha-option span {
     margin-top: 10px;
     font-size: 14px;
     text-align: center;
     color: #333;
 }
-
 .trilha-option.selected {
     border-color: #e43a12;
 }
-
 .trilha-option:hover {
     border-color: #e43a12;
 }
-
 .file-upload {
     display: flex;
     flex-direction: column;
@@ -173,31 +144,26 @@ input[type="file"] {
     margin: 0 auto;
     gap: 10px;
 }
-
 .file-upload img {
     width: 100px;
     height: 100px;
     object-fit: cover;
     transition: transform 0.3s;
 }
-
 .file-upload:hover img {
     transform: scale(0.9);
 }
-
 .file-upload:hover {
     border-color: #0080ff;
 }
-
 .botao-container {
     display: flex;
     justify-content: flex-end;
-    gap: 30px;
-    margin-top: 30px;
+    gap: 100px;
+    margin-top: 1px;
     position: relative;
     z-index: 2;
 }
-
 .inscricao {
     background-color: #f3541c;
     border: none;
@@ -212,23 +178,19 @@ input[type="file"] {
     overflow: visible;
     white-space: nowrap;
 }
-
 .inscricao:hover {
     background-color: #d84315;
 }
-
 .Voltar {
     width: 80px;
     height: 25.5px;
     margin-right: 8px;
     vertical-align: middle;
 }
-
 .voltar {
     display: flex;
     align-items: center;
 }
-
 .trilhas {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -236,7 +198,6 @@ input[type="file"] {
     padding: 0;
     border-radius: 8px;
 }
-
 .custom-checkbox {
     display: flex;
     flex-direction: column;
@@ -253,7 +214,6 @@ input[type="file"] {
     margin-top: 10px;
     position: relative;
 }
-
 .custom-checkbox input[type="checkbox"] {
     position: absolute;
     top: 10px;
@@ -263,7 +223,6 @@ input[type="file"] {
     cursor: pointer;
     opacity: 0;
 }
-
 .custom-checkbox .checkmark {
     position: absolute;
     top: 10px;
@@ -277,23 +236,19 @@ input[type="file"] {
     align-items: center;
     justify-content: center;
 }
-
 .custom-checkbox input[type="checkbox"]:checked+.checkmark {
     background-color: #f3541c;
     border-color: #f3541c;
 }
-
 .custom-checkbox input[type="checkbox"]:checked+.checkmark::after {
     content: '✔';
     font-size: 12px;
     color: white;
 }
-
 .custom-checkbox.selected {
     border-color: #f3541c;
     background-color: #f0f0f0;
 }
-
 .custom-checkbox .content {
     display: flex;
     flex-direction: column;
@@ -301,12 +256,10 @@ input[type="file"] {
     gap: 10px;
     margin-top: 20px;
 }
-
 .custom-checkbox img {
     max-width: 30%;
     height: auto;
 }
-
 .custom-checkbox .texto {
     font-size: 16px;
     color: #333;
@@ -314,12 +267,10 @@ input[type="file"] {
     width: 100%;
     white-space: nowrap;
 }
-
 .custom-checkbox input[type="checkbox"]:checked+.checkmark {
     background-color: #f3541c;
     border-color: #f3541c;
 }
-
 .custom-checkbox input[type="checkbox"]:checked+.checkmark::after {
     content: '✔';
     position: absolute;
@@ -329,58 +280,47 @@ input[type="file"] {
     color: white;
     transition: left 0.3s ease;
 }
-
 .custom-checkbox:hover {
     border-color: #f3541c;
 }
-
 .custom-checkbox span {
     font-size: 15px;
     color: #333;
     text-align: center;
 }
-
 .custom-checkbox input[type="radio"] {
     display: none;
 }
-
 .custom-checkbox .content {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
-
-/* Estilos para mensagens de erro */
 .mensagem-erro {
     color: #ff0000;
     font-size: 0.8rem;
     margin-top: 0.2rem;
     margin-bottom: 0.5rem;
 }
-
 .campo-invalido {
     border: 1px solid #ff0000 !important;
 }
-
 .file-upload.campo-invalido {
     border: 1px solid #ff0000;
     padding: 5px;
     border-radius: 4px;
 }
-
 .terms.campo-invalido {
     outline: 1px solid #ff0000;
     padding: 5px;
     border-radius: 4px;
 }
-
 .trilhas.campo-invalido {
     outline: 1px solid #ff0000;
     padding: 5px;
     border-radius: 4px;
 }
-
 #loadingContainer {
     position: fixed;
     top: 0;
@@ -395,21 +335,18 @@ input[type="file"] {
     z-index: 1000;
     color: white;
 }
-
 .loading-image {
     width: 200px;
     height: 200px;
     margin-bottom: 20px;
     animation: spin 1s linear infinite;
 }
-
 .loading-text {
     font-size: 1.2rem;
     margin-top: 15px;
 }
-
+/*mediaquery fi*/
 @media (max-width: 767px) {
-    /* RESET PARA EVITAR CONFLITOS */
     body, .container, .form-column, form {
         margin: 0;
         padding: 0;
@@ -417,28 +354,22 @@ input[type="file"] {
         display: flex;
         flex-direction: column;
     }
-
     body {
         min-height: 100vh;
         align-items: center;
         padding: 20px 15px;
         box-sizing: border-box;
     }
-
     .container {
         max-width: 360px;
     }
-
     .image-column {
         display: none;
     }
-
     .form-column {
         padding: 0;
         width: 100vh;
     }
-
-    /* TÍTULOS */
     .form h1, .form h2, .subtitulo {
         width: 100% !important;
         margin: 0 0 15px 0;
@@ -447,25 +378,19 @@ input[type="file"] {
         padding: 10px;
         overflow: hidden;
     }
-
     .form h2 {
         font-size: 18px;
     }
-
-    /* FORMULÁRIO (UM ABAIXO DO OUTRO) */
     form {
         gap: 20px;
         width: 400px;
     }
-
     .form-group, .trilhas, .terms, .file-upload, .botao-container {
         display: flex;
         flex-direction: column;
         width: 100%;
         height: 150px;
     }
-
-    /* INPUTS, SELECTS, BOTÕES */
     input, select, button, .file-upload, .custom-checkbox {
         width: 100% !important;
         max-width: 100% !important;
@@ -475,61 +400,47 @@ input[type="file"] {
         box-sizing: border-box;
         margin-bottom: 0;
     }
-
-    /* CHECKBOX PERSONALIZADO (TRILHAS) */
     .custom-checkbox {
         height: auto;
         padding: 15px;
         margin: 0 0 15px 0 !important;
     }
-
-    /* UPLOAD DE ARQUIVO */
     .file-upload {
         padding: 15px;
         margin: 0 0 20px 0;
     }
-
-    /* TERMOS E CONDIÇÕES */
     .terms {
         flex-direction: row;
         align-items: center;
         margin: 15px 0;
     }
-
     .terms input[type="checkbox"] {
         width: 20px;
         height: 20px;
         margin-right: 10px;
     }
-
     .terms label {
         width: calc(100% - 30px);
         font-size: 14px;
         line-height: 1.4;
         white-space: normal;
     }
-
-    /* BOTÕES */
     .botao-container {
         margin: 20px 0 0 0;
         gap: 10px;
     }
-
     .inscricao {
         height: 50px;
         font-size: 16px;
     }
 }
-
 @media (max-width: 400px) {
     body {
         padding: 15px 10px;
     }
-
     .form h1 {
         font-size: 20px;
     }
-
     input, select, button {
         padding: 10px 12px;
     }

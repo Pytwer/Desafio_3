@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
 * {
     font-family: "Poppins", sans-serif;
     margin: 0;
@@ -7,18 +6,14 @@
     box-sizing: border-box;
     text-decoration: none;
 }
-
 body {
     background-color: #2d37481a;
     overflow-x: hidden;
 }
-
 .container {
     display: flex;
     min-height: 100vh;
 }
-
-/* Sidebar Desktop (sempre visível em telas grandes) */
 .sidebar {
     background-color: #2135A6;
     width: 400px;
@@ -33,69 +28,56 @@ body {
     z-index: 100;
     box-shadow:  1px 5px 30px rgba(0, 0, 0, 0.836);
 }
-
 .logo img {
     height: 2.5rem;
     width: auto;
 }
-
 .sidebar .user-info {
     display: flex;
     align-items: center;
     padding-top: 30px;
     margin-bottom: 3rem;
 }
-
 .sidebar .user-info img {
     height: 2.5rem;
     width: 2.5rem;
     border-radius: 50%;
     margin-right: 0.5rem;
 }
-
 .sidebar .menu-title {
     color: #ffffff;
     margin-bottom: 1rem;
     font-weight: bold;
 }
-
 .sidebar ul {
     list-style: none;
 }
-
 .sidebar ul li {
     display: flex;
     align-items: center;
     color: #ffffff;
     margin-bottom: 1rem;
 }
-
 .sidebar ul li i {
     margin-right: 0.5rem;
 }
-
 .sidebar ul li a {
     color: inherit;
     cursor: pointer;
     font-weight: 500;
 }
-
 .sidebar ul li a:hover {
     text-decoration: underline;
 }
-
 h3 {
     color: #ffffff;
 }
-
-/* Main Content */
 .main-content {
-    margin-left: 400px; /* Compensa a largura da sidebar */
+    margin-left: 400px; 
     width: calc(100% - 400px);
     padding: 6.25rem 7rem;
     transition: margin-left 0.3s ease;
 }
-
 .card {
     background-color: #ffffff;
     padding: 1.5rem;
@@ -106,7 +88,6 @@ h3 {
     gap: 1.5rem;
     border: 1px solid rgba(226, 232, 240, 0.8);
 }
-
 .card .card-title {
     display: flex;
     align-items: center;
@@ -117,14 +98,12 @@ h3 {
     padding-bottom: 0.5rem;
     border-bottom: 1px solid rgba(237, 242, 247, 0.8);
 }
-
 .card .card-title i {
     font-size: 1.75rem;
     margin-right: 0.75rem;
     color: #4299e1;
     text-shadow: 0 2px 4px rgba(66, 153, 225, 0.2);
 }
-
 .card .buttons {
     display: flex;
     align-items: center;
@@ -132,7 +111,6 @@ h3 {
     flex-wrap: wrap;
     gap: 0.75rem;
 }
-
 .card .buttons button {
     background-color: #4299e1;
     color: #ffffff;
@@ -147,14 +125,11 @@ h3 {
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(66, 153, 225, 0.3);
 }
-
 .card .buttons button:hover {
     background-color: #3182ce;
     transform: translateY(-1px);
     box-shadow: 0 6px 8px rgba(255, 255, 255, 0.5);
 }
-
-/* Elementos do menu mobile (inicialmente escondidos) */
 .menu-toggle {
     display: none;
     position: fixed;
@@ -170,7 +145,6 @@ h3 {
     z-index: 1000;
     transition: all 0.3s ease;
 }
-
 .overlay {
     position: fixed;
     top: 0;
@@ -183,8 +157,7 @@ h3 {
     visibility: hidden;
     transition: all 0.3s ease;
 }
-
-/* Media Queries para Responsividade */
+/* MediaQuery fi */
 @media (max-width: 1200px) {
     .sidebar {
         width: 400px;
@@ -196,42 +169,34 @@ h3 {
         padding: 5rem;
     }
 }
-
 @media (max-width: 992px) {
     .sidebar {
         transform: translateX(-100%);
         width: 400px;
-    }
-    
+    }  
     .sidebar.active {
         transform: translateX(0);
     }
-    
     .menu-toggle {
         display: block;
     }
-    
     .overlay.active {
         opacity: 1;
         visibility: visible;
     }
-    
     .main-content {
         margin-left: 0;
         width: 100%;
         padding: 6.25rem 2rem;
     }
 }
-
 @media (max-width: 576px) {
     .main-content {
         padding: 6.25rem 1rem;
     }
-    
     .card .buttons {
         justify-content: center;
     }
-    
     .card .buttons button {
         width: 100%;
         justify-content: center;
