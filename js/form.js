@@ -473,4 +473,4 @@ function printSavedData() {
     });
     console.log(`\nTermos Aceitos: ${formData.termosAceitos ? 'Sim' : 'Não'}`);
     console.log('====================================');
-}  
+}
