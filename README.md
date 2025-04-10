@@ -46,10 +46,41 @@ Siga os passos abaixo para rodar o projeto no seu ambiente local:
 ```
 Desafio_3/
 ├── index.html
-├── style.css
-├── script.js
-└── assets/
-    └── imagens, vídeos ou outros recursos
+├── README.md
+└── pgs/
+    └── inscrição.html
+    └── login.html
+    └── menu.html
+└── js/
+    └── app.js
+    └── form.js
+    └── login.js
+    └── menu.js
+└── css/
+    └── form.css
+    └── login.css
+    └── menu.css
+    └── style.css
+└── mp4/
+    └── banner.mp4
+    └── bannerlogin.mp4
+    └── bannermobile.mp4
+    └── loginmobile.mp4
+└── img/
+    └── backend.png
+    └── banner.png
+    └── bannerform.png
+    └── bannermobile.png
+    └── data.png
+    └── design.png
+    └── front.png
+    └── games.png
+    └── icon.png
+    └── image.png
+    └── logo.png
+    └── upload.png
+└── pdf/
+    └── EDITAL_SECTI_FAPEMA_Nº_07_2024_–_TRILHAS_2B.pdf
 ```
 
 ## 📌 Observações
