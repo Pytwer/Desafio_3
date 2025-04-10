@@ -6,8 +6,7 @@ const faScript = document.createElement('script');
 faScript.src = 'https://kit.fontawesome.com/a076d05399.js';
 faScript.crossOrigin = 'anonymous';
 document.head.appendChild(faScript);
- // Função para detectar suporte a HTML5
- function supportsVideo() {
+function supportsVideo() {
     return !!document.createElement('video').canPlayType;
 }
 document.addEventListener('DOMContentLoaded', function() {
