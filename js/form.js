@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
             loadingContainer.style.display = 'flex';
             setTimeout(() => {
                 saveToLocalStorage();
+                
                 loadingContainer.style.display = 'none';
                 window.location.href = '/pgs/menu.html';
             }, 2000);
@@ -412,8 +413,38 @@ function removerErro(input, errorElement) {
     input.classList.remove('input-error');
     errorElement.style.display = 'none';
 }
+// Função para processar os arquivos (cria URL e Base64)
+async function getFilesData() {
+    async function processFile(fileInput) {
+        if (!fileInput.files || !fileInput.files[0]) return null;
+        
+        const file = fileInput.files[0];
+        const objectUrl = URL.createObjectURL(file);
+        
+        const base64 = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = (e) => resolve(e.target.result);
+            reader.readAsDataURL(file);
+        });
+
+        return {
+            name: file.name,
+            type: file.type,
+            size: file.size,
+            url: objectUrl,
+            base64: base64
+        };
+    }
+
+    return {
+        identity: await processFile(document.getElementById('identity')),
+        residenceProof: await processFile(document.getElementById('residence-proof'))
+    };
+}
+
+// Função original do formulário (sem modificações)
 function getFormData() {
-    const formData = {
+    return {
         nome: document.getElementById('name').value,
         dataNascimento: document.getElementById('date').value,
         cpf: document.getElementById('cpf').value,
@@ -439,20 +470,41 @@ function getFormData() {
             }),
         termosAceitos: document.querySelectorAll('input[name="terms"]:checked').length === 2
     };
-    return formData;
 }
-function saveToLocalStorage() {
-    const formData = getFormData();
-    localStorage.setItem('inscricaoTrilhas', JSON.stringify(formData));
-    console.log('Dados salvos no localStorage:', formData);
+
+// Função para salvar tudo no localStorage
+async function saveToLocalStorage() {
+    try {
+        const formData = getFormData();
+        const filesData = await getFilesData();
+        
+        const completeData = {
+            ...formData,
+            documentos: filesData
+        };
+        
+        localStorage.setItem('inscricaoTrilhas', JSON.stringify(completeData));
+        console.log('Dados salvos no localStorage:', completeData);
+        
+        // Limpa as URLs criadas após salvar (opcional)
+        if (filesData.identity) URL.revokeObjectURL(filesData.identity.url);
+        if (filesData.residenceProof) URL.revokeObjectURL(filesData.residenceProof.url);
+        
+    } catch (error) {
+        console.error('Erro ao salvar dados:', error);
+    }
 }
+
+// Função para exibir os dados salvos (atualizada)
 function printSavedData() {
     const savedData = localStorage.getItem('inscricaoTrilhas');
     if (!savedData) {
         console.log('Nenhum dado encontrado no localStorage.');
         return;
     }
+    
     const formData = JSON.parse(savedData);
+    
     console.log('=== DADOS SALVOS NO LOCALSTORAGE ===');
     console.log('Informações Pessoais:');
     console.log(`Nome: ${formData.nome}`);
@@ -461,16 +513,70 @@ function printSavedData() {
     console.log(`Sexo: ${formData.sexo}`);
     console.log(`E-mail: ${formData.email}`);
     console.log(`Telefone: ${formData.telefone}`);
+    
     console.log('\nEndereço:');
     console.log(`CEP: ${formData.cep}`);
     console.log(`Rua: ${formData.rua}`);
     console.log(`Número: ${formData.numero}`);
     console.log(`Cidade: ${formData.cidade}`);
     console.log(`Estado: ${formData.estado}`);
+    
     console.log('\nTrilhas Selecionadas:');
     formData.trilhas.forEach((trilha, index) => {
         console.log(`${index + 1}. ${trilha}`);
     });
+    
     console.log(`\nTermos Aceitos: ${formData.termosAceitos ? 'Sim' : 'Não'}`);
+    
+    console.log('\nDocumentos:');
+    if (formData.documentos) {
+        console.log('Identidade:', formData.documentos.identity ? 
+            `Arquivo: ${formData.documentos.identity.name} (${formData.documentos.identity.size} bytes)` : 
+            'Não enviado');
+        
+        console.log('Comprovante:', formData.documentos.residenceProof ? 
+            `Arquivo: ${formData.documentos.residenceProof.name} (${formData.documentos.residenceProof.size} bytes)` : 
+            'Não enviado');
+    }
+    
     console.log('====================================');
+}
+
+// Função para visualizar um documento salvo
+function viewDocument(documentType) {
+    const savedData = localStorage.getItem('inscricaoTrilhas');
+    if (!savedData) return;
+
+    const formData = JSON.parse(savedData);
+    if (!formData.documentos || !formData.documentos[documentType]) {
+        console.log('Documento não encontrado.');
+        return;
+    }
+
+    // Recria a URL do blob para visualização
+    const base64 = formData.documentos[documentType].base64;
+    const blob = base64ToBlob(base64, formData.documentos[documentType].type);
+    const url = URL.createObjectURL(blob);
+    
+    window.open(url, '_blank');
+}
+
+// Helper para converter Base64 para Blob
+function base64ToBlob(base64, contentType) {
+    const byteCharacters = atob(base64.split(',')[1]);
+    const byteArrays = [];
+    
+    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+        const slice = byteCharacters.slice(offset, offset + 512);
+        const byteNumbers = new Array(slice.length);
+        
+        for (let i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+        }
+        
+        const byteArray = new Uint8Array(byteNumbers);
+        byteArrays.push(byteArray);
+    }
+    
+    return new Blob(byteArrays, {type: contentType});
 }
