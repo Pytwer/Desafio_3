@@ -1,12 +1,12 @@
 const camposInvalidos = [];
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('inscricaoForm');
     const loadingContainer = document.getElementById('loadingContainer');
     aplicarMascaras();
     configurarValidacoes();
     configurarCheckboxesPersonalizados();
-    form.addEventListener('submit', function(e) {
-        e.preventDefault(); 
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
         console.log('Formulário submetido - iniciando validação');
         camposInvalidos.length = 0;
         if (validarFormulario()) {
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
             loadingContainer.style.display = 'flex';
             setTimeout(() => {
                 saveToLocalStorage();
-                
+
                 loadingContainer.style.display = 'none';
                 window.location.href = '/pgs/menu.html';
             }, 2000);
@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Formulário inválido. Erros encontrados:');
             camposInvalidos.forEach(campo => console.log(campo.id || campo.name));
             if (camposInvalidos.length > 0) {
-                camposInvalidos[0].scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'center' 
+                camposInvalidos[0].scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
                 });
             }
         }
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function aplicarMascaras() {
     const cpfInput = document.getElementById('cpf');
     if (cpfInput) {
-        cpfInput.addEventListener('input', function(e) {
+        cpfInput.addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, '');
             value = value.substring(0, 11);
             value = value.replace(/(\d{3})(\d)/, '$1.$2');
@@ -44,7 +44,7 @@ function aplicarMascaras() {
     }
     const telInput = document.querySelector('input[attrname="telephone1"]');
     if (telInput) {
-        telInput.addEventListener('input', function(e) {
+        telInput.addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, '');
             value = value.substring(0, 11);
             if (value.length > 2) {
@@ -60,7 +60,7 @@ function aplicarMascaras() {
     }
     const cepInput = document.getElementById('cep');
     if (cepInput) {
-        cepInput.addEventListener('input', function(e) {
+        cepInput.addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, '');
             value = value.substring(0, 8);
             if (value.length > 5) {
@@ -86,10 +86,10 @@ function configurarValidacoes() {
     campos.forEach(campo => {
         const element = campo.element || document.getElementById(campo.id);
         if (element) {
-            element.addEventListener('blur', function() {
+            element.addEventListener('blur', function () {
                 campo.validator(this);
             });
-            element.addEventListener('input', function() {
+            element.addEventListener('input', function () {
                 if (this.classList.contains('input-error')) {
                     const errorElement = this.nextElementSibling;
                     if (errorElement && errorElement.classList.contains('error-message')) {
@@ -126,7 +126,7 @@ function configurarCheckboxesPersonalizados() {
                 errorElement.style.display = 'none';
             }
         });
-        checkbox.addEventListener('change', function() {
+        checkbox.addEventListener('change', function () {
             if (this.checked) {
                 document.querySelectorAll('.custom-checkbox').forEach((option) => {
                     option.classList.remove('selected');
@@ -194,11 +194,11 @@ function validarDataNascimento(input) {
     const mes = hoje.getMonth() - dataNascimento.getMonth();
     if (mes < 0 || (mes === 0 && hoje.getDate() < dataNascimento.getDate())) {
         idade--;
-    } 
+    }
     if (idade < 16) {
         mostrarErro(input, errorElement, 'Você deve ter pelo menos 16 anos');
         return false;
-    } 
+    }
     removerErro(input, errorElement);
     return true;
 }
@@ -220,14 +220,14 @@ function validarDigitosCPF(cpf) {
     if (/^(\d)\1{10}$/.test(cpf)) return false;
     let soma = 0;
     for (let i = 1; i <= 9; i++) {
-        soma += parseInt(cpf.substring(i-1, i)) * (11 - i);
+        soma += parseInt(cpf.substring(i - 1, i)) * (11 - i);
     }
     let resto = (soma * 10) % 11;
     if ((resto === 10) || (resto === 11)) resto = 0;
     if (resto !== parseInt(cpf.substring(9, 10))) return false;
     soma = 0;
     for (let i = 1; i <= 10; i++) {
-        soma += parseInt(cpf.substring(i-1, i)) * (12 - i);
+        soma += parseInt(cpf.substring(i - 1, i)) * (12 - i);
     }
     resto = (soma * 10) % 11;
     if ((resto === 10) || (resto === 11)) resto = 0;
@@ -302,12 +302,12 @@ function validarCEP(input) {
 function validarRua(input) {
     const value = input.value.trim();
     const errorElement = criarOuObterErrorElement(input);
-    
+
     if (!value) {
         mostrarErro(input, errorElement, 'A rua é obrigatória');
         return false;
     }
-    
+
     removerErro(input, errorElement);
     return true;
 }
@@ -338,7 +338,7 @@ function validarCidade(input) {
 function validarEstado(input) {
     const value = input.value.trim().toUpperCase();
     const errorElement = criarOuObterErrorElement(input);
-    const estados = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
+    const estados = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
     if (!value) {
         mostrarErro(input, errorElement, 'O estado é obrigatório');
         return false;
@@ -413,20 +413,16 @@ function removerErro(input, errorElement) {
     input.classList.remove('input-error');
     errorElement.style.display = 'none';
 }
-// Função para processar os arquivos (cria URL e Base64)
 async function getFilesData() {
     async function processFile(fileInput) {
         if (!fileInput.files || !fileInput.files[0]) return null;
-        
         const file = fileInput.files[0];
         const objectUrl = URL.createObjectURL(file);
-        
         const base64 = await new Promise((resolve) => {
             const reader = new FileReader();
             reader.onload = (e) => resolve(e.target.result);
             reader.readAsDataURL(file);
         });
-
         return {
             name: file.name,
             type: file.type,
@@ -435,14 +431,11 @@ async function getFilesData() {
             base64: base64
         };
     }
-
     return {
         identity: await processFile(document.getElementById('identity')),
         residenceProof: await processFile(document.getElementById('residence-proof'))
     };
 }
-
-// Função original do formulário (sem modificações)
 function getFormData() {
     return {
         nome: document.getElementById('name').value,
@@ -471,112 +464,87 @@ function getFormData() {
         termosAceitos: document.querySelectorAll('input[name="terms"]:checked').length === 2
     };
 }
-
-// Função para salvar tudo no localStorage
 async function saveToLocalStorage() {
     try {
         const formData = getFormData();
         const filesData = await getFilesData();
-        
         const completeData = {
             ...formData,
             documentos: filesData
         };
-        
         localStorage.setItem('inscricaoTrilhas', JSON.stringify(completeData));
         console.log('Dados salvos no localStorage:', completeData);
-        
-        // Limpa as URLs criadas após salvar (opcional)
         if (filesData.identity) URL.revokeObjectURL(filesData.identity.url);
         if (filesData.residenceProof) URL.revokeObjectURL(filesData.residenceProof.url);
-        
     } catch (error) {
         console.error('Erro ao salvar dados:', error);
     }
 }
-
-// Função para exibir os dados salvos (atualizada)
 function printSavedData() {
     const savedData = localStorage.getItem('inscricaoTrilhas');
     if (!savedData) {
         console.log('Nenhum dado encontrado no localStorage.');
         return;
     }
-    
     const formData = JSON.parse(savedData);
-    
     console.log('=== DADOS SALVOS NO LOCALSTORAGE ===');
     console.log('Informações Pessoais:');
     console.log(`Nome: ${formData.nome}`);
-    console.log(`Data de Nascimento: ${formData.dataNascimento}`);
+    const dataFormatada = formData.dataNascimento
+        .split('-') 
+        .reverse()  
+        .join('/');
+    console.log(`Data de Nascimento: ${dataFormatada}`); 
     console.log(`CPF: ${formData.cpf}`);
     console.log(`Sexo: ${formData.sexo}`);
     console.log(`E-mail: ${formData.email}`);
     console.log(`Telefone: ${formData.telefone}`);
-    
     console.log('\nEndereço:');
     console.log(`CEP: ${formData.cep}`);
     console.log(`Rua: ${formData.rua}`);
     console.log(`Número: ${formData.numero}`);
     console.log(`Cidade: ${formData.cidade}`);
     console.log(`Estado: ${formData.estado}`);
-    
-    console.log('\nTrilhas Selecionadas:');
     formData.trilhas.forEach((trilha, index) => {
         console.log(`${index + 1}. ${trilha}`);
     });
-    
     console.log(`\nTermos Aceitos: ${formData.termosAceitos ? 'Sim' : 'Não'}`);
-    
     console.log('\nDocumentos:');
     if (formData.documentos) {
-        console.log('Identidade:', formData.documentos.identity ? 
-            `Arquivo: ${formData.documentos.identity.name} (${formData.documentos.identity.size} bytes)` : 
+        console.log('Identidade:', formData.documentos.identity ?
+            `Arquivo: ${formData.documentos.identity.name} (${formData.documentos.identity.size} bytes)` :
             'Não enviado');
-        
-        console.log('Comprovante:', formData.documentos.residenceProof ? 
-            `Arquivo: ${formData.documentos.residenceProof.name} (${formData.documentos.residenceProof.size} bytes)` : 
+
+        console.log('Comprovante:', formData.documentos.residenceProof ?
+            `Arquivo: ${formData.documentos.residenceProof.name} (${formData.documentos.residenceProof.size} bytes)` :
             'Não enviado');
     }
-    
     console.log('====================================');
 }
-
-// Função para visualizar um documento salvo
 function viewDocument(documentType) {
     const savedData = localStorage.getItem('inscricaoTrilhas');
     if (!savedData) return;
-
     const formData = JSON.parse(savedData);
     if (!formData.documentos || !formData.documentos[documentType]) {
         console.log('Documento não encontrado.');
         return;
     }
-
-    // Recria a URL do blob para visualização
     const base64 = formData.documentos[documentType].base64;
     const blob = base64ToBlob(base64, formData.documentos[documentType].type);
     const url = URL.createObjectURL(blob);
-    
     window.open(url, '_blank');
 }
-
-// Helper para converter Base64 para Blob
 function base64ToBlob(base64, contentType) {
     const byteCharacters = atob(base64.split(',')[1]);
     const byteArrays = [];
-    
     for (let offset = 0; offset < byteCharacters.length; offset += 512) {
         const slice = byteCharacters.slice(offset, offset + 512);
         const byteNumbers = new Array(slice.length);
-        
         for (let i = 0; i < slice.length; i++) {
             byteNumbers[i] = slice.charCodeAt(i);
         }
-        
         const byteArray = new Uint8Array(byteNumbers);
         byteArrays.push(byteArray);
     }
-    
-    return new Blob(byteArrays, {type: contentType});
+    return new Blob(byteArrays, { type: contentType });
 }
